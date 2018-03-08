@@ -29,11 +29,11 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
             }
 			carrusel = $( "#carousel" ).rcarousel({
               width: anchoModulo, height: altoModulo,
-              step: 1, visible: pasos,
-    		  speed: 2345,
+              step: 4, visible: pasos,
+    		  speed: 5000,
               auto: {
               	enabled: true,
-              	interval: 2345,
+              	interval: 3000,
               	direction: "next"
               }
 			});
@@ -117,17 +117,22 @@ function cargarNuevoTurno(moduloID, moduloCODIGO, turnoNOMBRE) {
     // $("#carousel #modulo-id-"+moduloID).remove();
     // $("#carousel #modulo-id-"+moduloID).addClass('hidden');
     // alert( turnoNOMBRE );
-//     var $div, $jqElements = $();
-// 	var div = '<div id="modulo-id-' + moduloID + '" class="table turno-atendiendo">'
-//         +'<div id="modulo-turno-' + moduloID + '" class="col-xs-8 nombre-turno " >' ++ '' + turnoNOMBRE + '</div>'
-//         +'<div id="modulo-codigo-' + moduloID + '" class="col-xs-4 modulo-turno " >' + moduloCODIGO + '</div>'
-//         +'</div>';
+    //     var $div, $jqElements = $();
+    // 	var div = '<div id="modulo-id-' + moduloID + '" class="table turno-atendiendo">'
+    //         +'<div id="modulo-turno-' + moduloID + '" class="col-xs-8 nombre-turno " >' ++ '' + turnoNOMBRE + '</div>'
+    //         +'<div id="modulo-codigo-' + moduloID + '" class="col-xs-4 modulo-turno " >' + moduloCODIGO + '</div>'
+    //         +'</div>';
     
     var data = carrusel.data( "data" );
     for( var i in data.paths ){
         var elemCarrusel = data.paths[i][0];
         if( elemCarrusel.id == 'modulo-id-' + moduloID + '' ){
             // console.log(elemCarrusel);
+            
+            if( $("#carousel #modulo-turno-"+moduloID).text() != turnoNOMBRE  ){
+                beep();
+            }
+            
             $("#carousel #modulo-turno-"+moduloID).html( turnoNOMBRE );
             $div = $( elemCarrusel );
             $div.find('#modulo-turno-' + moduloID).html( turnoNOMBRE  );
@@ -135,7 +140,7 @@ function cargarNuevoTurno(moduloID, moduloCODIGO, turnoNOMBRE) {
     }
     
     
-// 	$( "#carousel" ).rcarousel( "append", div );							
+    // $( "#carousel" ).rcarousel( "append", div );							
     // $("#carousel .wrapper").prepend( div );
 }
 
@@ -185,3 +190,22 @@ function mostrarTurnoAtendiendo(){
       });
       
 }
+
+
+
+
+
+
+
+
+
+
+function beep(volumen = 50) {
+    var audioElementBeep = document.createElement('audio');
+    audioElementBeep.setAttribute('src', '/snd/Jetsons-doorbell.mp3');
+    volumen = (volumen) ? volumen : 95;
+    audioElementBeep.play();
+    //$(audioElementBeep).prop("volume", volumen);
+}
+
+

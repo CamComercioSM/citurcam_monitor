@@ -1,0 +1,7 @@
+
+@font-face {
+    font-family: 'Tw Cen MT';
+    font-style: normal;
+    font-weight: normal;
+    src: local('TwCenMT'), url('../fonts/TwCenMT.woff') format('woff');
+}

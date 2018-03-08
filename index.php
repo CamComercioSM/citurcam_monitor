@@ -1,5 +1,5 @@
 <?php
-$tiempoConsulta = 10; //En segundos
+$tiempoConsulta = 5; //En segundos
 $tiempoPresentacion = 5; //En segundos
 $Sede = 1;
 $altoPantalla = 1080;
@@ -22,6 +22,7 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link type="text/css" rel="stylesheet" href="css/fuentes.css">
         <link type="text/css" rel="stylesheet" href="css/animate.css">
         <link type="text/css" rel="stylesheet" href="css/rcarousel.css" />
         <link type="text/css" rel="stylesheet" href="css/main.css">
@@ -62,6 +63,7 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
           }
           
           .turno-atendiendo .modulo-turno {
+            color: white;
             background: transparent;
             background-image: url(/img/atras-modulo.png);
             background-size: 100% 100%;
@@ -73,11 +75,19 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
             vertical-align: middle;
             padding: 35px 15px;
             
-            font-size-adjust: 0.58;
+            font-size: 150%;
             text-align: center;
             word-wrap: break-word;
+            white-space: pre-line; 
+            overflow: hidden;
+            text-overflow: none;
             
           }
+          
+          .turno-atendiendo .modulo-turno::first-word {
+            content: "-----------";
+          }
+          
         </style>
     </head>
     <body>
@@ -87,12 +97,12 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
             <div class="text-center" style="padding-top: 10px;" ><img src="/img/logo-retina.png"  style="height:<?= $altoPantalla*0.075 ?>px" /></div>
             <hr />
             <div><img src="/img/titulo-turno.png"  style="height:<?= $altoPantalla*0.1 ?>px" /></div>
-            <div class="animated pulse infinite text-center " style="min-height: 30%;" >
+            <div class="animated pulse infinite text-center " style="height: 30%; padding: 5px;overflow: hidden; word-wrap: break-word;" >
               <!--<span id="codigo-turno-llamando" style="font-size: 50%;" >XXXXXX</span><br />-->
               <span id="nombre-turno-llamando" ></span>
             </div>
             <div><img src="/img/titulo-modulo.png"  style="height:<?= $altoPantalla*0.1 ?>px" /></div>
-            <div class="animated pulse infinite text-center" style="min-height: 30%;">
+            <div class="animated pulse infinite text-center" style="min-height: 30%; font-size: 175%;">
               <span id="codigo-modulo-llamando" ></span>
             </div>
           </div>
@@ -103,7 +113,7 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
           </div>
         </div>
         <hr />
-        <div class="row">
+        <div class="row" style="margin: 0px;">
       		<div class="borde-izq">
       		  <img src="/img/border-turnos-izq.png"/>
       		</div>

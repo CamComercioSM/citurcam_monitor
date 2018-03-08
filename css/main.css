@@ -4,7 +4,9 @@
 
  body {
    padding: 0px;
- }
+   
+   font-family: 'Tw Cen MT'!important;
+}
 
 
 img {
@@ -17,10 +19,9 @@ img {
    box-shadow: 10px 10px 20px 1px rgba(41,41,41,0.93);
 
    text-shadow: #969696 1px 3px 0, #EEEEEE 1px 13px 5px;
-
-   font-size: 400%; 
-   font-weight: bold;
    
+   font-size: 470%; 
+   font-weight: bold;
    
    z-index: 10;
  }
@@ -36,7 +37,7 @@ img {
  
  .carrusel {
    border: none;
-   width: 88%;
+   width: 90%;
    margin: auto;
  }
  
