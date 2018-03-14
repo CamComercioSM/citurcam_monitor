@@ -33,7 +33,7 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
     		  speed: 5000,
               auto: {
               	enabled: true,
-              	interval: 3000,
+              	interval: 1357,
               	direction: "next"
               }
 			});
@@ -68,7 +68,8 @@ function mostrarTurnoLlamando(tiempo){
                     var Turno = [];
                     Turno["id"] = TurnosRecibidos[i].turnoID;
                     Turno["codigo"] = TurnosRecibidos[i].turnoCODIGO;
-                    Turno["nombre"] = TurnosRecibidos[i].Persona.personaNOMBRES + " " + TurnosRecibidos[i].Persona.personaAPELLIDOS;
+                    Turno["nombre"] = TurnosRecibidos[i].Persona.personaNOMBRES;
+                    Turno["apellido"] = TurnosRecibidos[i].Persona.personaAPELLIDOS;
                     Turno["identificacion"] = TurnosRecibidos[i].Persona.personaIDENTIFICACION;
                     Turno["moduloID"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionID;
                     Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionTITULO;
@@ -99,12 +100,13 @@ var mostrando = 0;
 var tiempoMostrarTurnoLlamando;
 function mostrarDatosTurnoLlamando( tiempo ){
     if(TurnosLlamando.length > 0){
-        $("#nombre-turno-llamando").html(TurnosLlamando[mostrando].nombre);
+        $("#nombre-turno-llamando").html(TurnosLlamando[mostrando].nombre+ " "+ TurnosLlamando[mostrando].apellido);
         $("#codigo-modulo-llamando").html(TurnosLlamando[mostrando].modulo);
         cargarNuevoTurno(
             TurnosLlamando[mostrando].moduloID,
             TurnosLlamando[mostrando].modulo,
-             TurnosLlamando[mostrando].nombre
+             TurnosLlamando[mostrando].nombre,
+             TurnosLlamando[mostrando].apellido
         );
     }else{
         $("#nombre-turno-llamando").html("");
@@ -113,7 +115,7 @@ function mostrarDatosTurnoLlamando( tiempo ){
     // clearTimeout(tiempoMostrarTurnoLlamando);
     // tiempoMostrarTurnoLlamando = setTimeout(mostrarDatosTurnoLlamando, tiempo );
 }
-function cargarNuevoTurno(moduloID, moduloCODIGO, turnoNOMBRE) {
+function cargarNuevoTurno(moduloID, moduloCODIGO, turnoNOMBRE, turnoAPELLIDO) {
     // $("#carousel #modulo-id-"+moduloID).remove();
     // $("#carousel #modulo-id-"+moduloID).addClass('hidden');
     // alert( turnoNOMBRE );
@@ -122,20 +124,21 @@ function cargarNuevoTurno(moduloID, moduloCODIGO, turnoNOMBRE) {
     //         +'<div id="modulo-turno-' + moduloID + '" class="col-xs-8 nombre-turno " >' ++ '' + turnoNOMBRE + '</div>'
     //         +'<div id="modulo-codigo-' + moduloID + '" class="col-xs-4 modulo-turno " >' + moduloCODIGO + '</div>'
     //         +'</div>';
-    
+    var nombreCompleto = turnoNOMBRE+ " "+turnoAPELLIDO;
     var data = carrusel.data( "data" );
     for( var i in data.paths ){
         var elemCarrusel = data.paths[i][0];
         if( elemCarrusel.id == 'modulo-id-' + moduloID + '' ){
             // console.log(elemCarrusel);
             
-            if( $("#carousel #modulo-turno-"+moduloID).text() != turnoNOMBRE  ){
+            //Sonido si es nuevo el turno
+            if( $("#carousel #modulo-turno-"+moduloID).text() != nombreCompleto  ){
                 beep();
             }
             
-            $("#carousel #modulo-turno-"+moduloID).html( turnoNOMBRE );
+            $("#carousel #modulo-turno-"+moduloID).html( nombreCompleto );
             $div = $( elemCarrusel );
-            $div.find('#modulo-turno-' + moduloID).html( turnoNOMBRE  );
+            $div.find('#modulo-turno-' + moduloID).html( nombreCompleto  );
         }
     }
     
