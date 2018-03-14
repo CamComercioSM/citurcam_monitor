@@ -118,8 +118,11 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
       </div>
     </div>
     <div class="col-md-8 area-publicidad">
+      <!--<iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" -->
+      <!--  src="https://www.youtube.com/embed/videoseries?list=PLy0Q2cGnTqFv-Ct3OOX6B4JeLEL3adSeV&vq=small&loop=1&autoplay=1"-->
+      <!--  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>-->
       <iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" 
-        src="https://www.youtube.com/embed/videoseries?list=PLy0Q2cGnTqFv-Ct3OOX6B4JeLEL3adSeV&vq=small&loop=1&autoplay=1" 
+        src="/video/player.php"
         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
     </div>
   </div>

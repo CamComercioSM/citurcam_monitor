@@ -45,6 +45,7 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
       .fail(function(data) {
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
+        window.location.reload();
       });
       
 }
