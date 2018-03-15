@@ -5,13 +5,13 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
     var jqxhr = $.ajax({
         method: "POST",
         url: "api.php",
-        dataType : "html",
+        dataType : "json",
         data: { operacion: "modulosActivos" }
       }).done(function(data) {
         console.clear();  
         console.log( "Modulos de Atencion" );
         console.log( data );
-        data = JSON.parse(data);
+        // data = JSON.parse(data);
         if(data.RESPUESTA === 'EXITO'){
             var Things = data.DATOS;
             for (var i = 0; i  < Things.length; i++) {
@@ -50,7 +50,7 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
         console.clear();
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
-        // window.location.reload();
+        setTimeout( function(){ window.location.reload() }, 3000);
       });
       
 }
@@ -62,13 +62,13 @@ function mostrarTurnoLlamando(tiempo){
     var jqxhr = $.ajax({
         method: "POST",
         url: "api.php",
-        dataType : "html",
+        dataType : "json",
         data: { operacion: "turnosLlamando" }
       }).done(function(data) {
         console.clear();  
         console.log( "Siguiente" );
         console.log( data );
-        data = JSON.parse(data);
+        // data = JSON.parse(data);
         TurnosLlamando = new Array();
         if(data.RESPUESTA === 'EXITO'){
             var TurnosRecibidos = data.DATOS;
@@ -103,7 +103,7 @@ function mostrarTurnoLlamando(tiempo){
         console.clear();  
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
-        // location.reload();
+        setTimeout( function(){ window.location.reload() }, 3000);
       });
       
 }
@@ -189,6 +189,7 @@ function mostrarTurnoAtendiendo(){
       .fail(function(data) {
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
+        setTimeout( function(){ window.location.reload() }, 3000);
       });
       
 }

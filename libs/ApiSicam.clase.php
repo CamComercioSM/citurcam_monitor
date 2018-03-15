@@ -2,10 +2,13 @@
 
 class ApiSicam {
 
-   const URL = 'https://api.ccsm.org.co/';
-   //const URL = 'https://sicam32-jpllinas.c9users.io/api/';
-   const USERNAME = 'ccsm_monitor_turnos';
-   const PASSWORD = 'x';
+//   const URL = 'https://api.ccsm.org.co/';
+    const URL = 'https://sicam32-jpllinas.c9users.io/api/';
+    const USERNAME = 'ccsm_monitor_turnos';
+    const PASSWORD = 'kpaC6DdtRBWj82k';
+//   const USERNAME = 'afiliados@ccsm.org.co';
+//   const PASSWORD = 'afiliados@ccsm.org.co';
+   
    
    private $conexionApi = null;
 
