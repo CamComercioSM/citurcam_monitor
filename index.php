@@ -1,5 +1,5 @@
 <?php
-$tiempoConsulta = 3; //En segundos
+$tiempoConsulta = 2; //En segundos
 $tiempoPresentacion = 5; //En segundos
 $Sede = 1;
 $altoPantalla = 1080;
@@ -101,15 +101,15 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
   <div class="row" style="margin-right: 0px;" > 
     <div class="col-md-4 llamando-turnos" style="height:<?= $altoPantalla*0.7 ?>px" >
       <div style="height:<?= $altoPantalla*0.1 ?>px" />
-        <div class="text-center" style="float:left;width:50%;" ><img src="/img/logo-retina.png"  style="height:<?= $altoPantalla*0.075 ?>px" /></div>
-        <div id="reloj" class="clock"  style="z-index: -1;margin:0em;float: right;width:49%;"></div>
+        <div class="text-center" style="float:left;width:40%;" ><img src="/img/logo-retina.png"  style="height:<?= $altoPantalla*0.075 ?>px" /></div>
+        <div id="reloj" class="clock"  style="z-index: -1;margin:0em;float: right;width:59%;"></div>
       </div>
       <hr class="clear clearfix clear-fix" />
       <div style="margin-top: -10px;line-height: 1em;" >
         <div><img src="/img/titulo-turno.png"  style="height:<?= $altoPantalla*0.1 ?>px" /></div>
         <div class="animated pulse infinite text-center " style="height: 30%; padding: 5px;overflow: hidden; word-wrap: break-word;" >
           <!--<span id="codigo-turno-llamando" style="font-size: 50%;" >XXXXXX</span><br />-->
-          <div id="nombre-turno-llamando" style="min-height: <?= $altoPantalla*0.2 ?>px;max-height: <?= $altoPantalla*0.2 ?>px" ></div>
+          <div id="nombre-turno-llamando" style="padding:3px;min-height: <?= $altoPantalla*0.2 ?>px;max-height: <?= $altoPantalla*0.2 ?>px" ></div>
         </div>
         <div><img src="/img/titulo-modulo.png"  style="height:<?= $altoPantalla*0.1 ?>px" /></div>
         <div class="animated pulse infinite text-center" style="min-height: 30%; font-size: 1.4em">
@@ -121,7 +121,7 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
       <!--<iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" -->
       <!--  src="https://www.youtube.com/embed/videoseries?list=PLy0Q2cGnTqFv-Ct3OOX6B4JeLEL3adSeV&vq=small&loop=1&autoplay=1"-->
       <!--  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>-->
-      <iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" 
+      <iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" style="width:100%;height:<?= $altoPantalla*0.7 ?>px;object-fit: cover;"
         src="/video/player.php"
         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
     </div>

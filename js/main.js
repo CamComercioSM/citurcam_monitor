@@ -5,9 +5,13 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
     var jqxhr = $.ajax({
         method: "POST",
         url: "api.php",
-        dataType : "json",
+        dataType : "html",
         data: { operacion: "modulosActivos" }
       }).done(function(data) {
+        console.clear();  
+        console.log( "Modulos de Atencion" );
+        console.log( data );
+        data = JSON.parse(data);
         if(data.RESPUESTA === 'EXITO'){
             var Things = data.DATOS;
             for (var i = 0; i  < Things.length; i++) {
@@ -43,9 +47,10 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
         }
       })
       .fail(function(data) {
+        console.clear();
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
-        window.location.reload();
+        // window.location.reload();
       });
       
 }
@@ -57,9 +62,13 @@ function mostrarTurnoLlamando(tiempo){
     var jqxhr = $.ajax({
         method: "POST",
         url: "api.php",
-        dataType : "json",
+        dataType : "html",
         data: { operacion: "turnosLlamando" }
       }).done(function(data) {
+        console.clear();  
+        console.log( "Siguiente" );
+        console.log( data );
+        data = JSON.parse(data);
         TurnosLlamando = new Array();
         if(data.RESPUESTA === 'EXITO'){
             var TurnosRecibidos = data.DATOS;
@@ -91,8 +100,10 @@ function mostrarTurnoLlamando(tiempo){
         tiempoTurnoLlamando = setTimeout(mostrarTurnoLlamando, tiempo );
         
       }).fail(function(data) {
+        console.clear();  
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
+        // location.reload();
       });
       
 }
@@ -148,23 +159,10 @@ function cargarNuevoTurno(moduloID, moduloCODIGO, turnoNOMBRE, turnoAPELLIDO) {
     // $("#carousel .wrapper").prepend( div );
 }
 
-
-
 function mostrarSiguienteLlamando(){
     mostrando++;
     if(mostrando >= TurnosLlamando.length) mostrando = 0;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function mostrarTurnoAtendiendo(){
     var jqxhr = $.ajax({
@@ -195,16 +193,7 @@ function mostrarTurnoAtendiendo(){
       
 }
 
-
-
-
-
-
-
-
-
-
-function beep(volumen = 50) {
+function beep(volumen = 95) {
     var audioElementBeep = document.createElement('audio');
     audioElementBeep.setAttribute('src', '/snd/Jetsons-doorbell.mp3');
     volumen = (volumen) ? volumen : 95;
