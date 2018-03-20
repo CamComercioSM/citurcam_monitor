@@ -50,7 +50,7 @@ function mostrarModulosAtencionActivos( anchoModulo, altoModulo, despuesCargar){
         console.clear();
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
-        setTimeout( function(){ window.location.reload() }, 3000);
+        setTimeout( function(){ location.reload() }, 3000);
       });
       
 }
@@ -103,7 +103,7 @@ function mostrarTurnoLlamando(tiempo){
         console.clear();  
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
-        setTimeout( function(){ window.location.reload() }, 3000);
+        setTimeout( function(){ location.reload() }, 3000);
       });
       
 }
@@ -189,7 +189,7 @@ function mostrarTurnoAtendiendo(){
       .fail(function(data) {
         console.log( "Falló la consulta. Contactar con el Centro TICS." );
         console.log( data );
-        setTimeout( function(){ window.location.reload() }, 3000);
+        setTimeout( function(){ location.reload() }, 3000);
       });
       
 }

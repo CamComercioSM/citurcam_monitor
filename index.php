@@ -99,7 +99,7 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
   </head>
   <body>
   <div class="row" style="margin-right: 0px;" > 
-    <div class="col-md-4 llamando-turnos" style="height:<?= $altoPantalla*0.7 ?>px" >
+    <div class="col-md-4 llamando-turnos" style="height:<?= $altoPantalla*0.7 ?>px;" >
       <div style="height:<?= $altoPantalla*0.1 ?>px" />
         <div class="text-center" style="float:left;width:40%;" ><img src="/img/logo-retina.png"  style="height:<?= $altoPantalla*0.075 ?>px" /></div>
         <div id="reloj" class="clock"  style="z-index: -1;margin:0em;float: right;width:59%;"></div>
@@ -117,11 +117,11 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
         </div>
       </div>
     </div>
-    <div class="col-md-8 area-publicidad">
+    <div class="col-md-8 area-publicidad" style="" >
       <!--<iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" -->
       <!--  src="https://www.youtube.com/embed/videoseries?list=PLy0Q2cGnTqFv-Ct3OOX6B4JeLEL3adSeV&vq=small&loop=1&autoplay=1"-->
       <!--  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>-->
-      <iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" style="width:100%;height:<?= $altoPantalla*0.7 ?>px;object-fit: cover;"
+      <iframe width="100%" height="<?= $altoPantalla*0.7 ?>px" style="width:100%;height:<?= $altoPantalla*0.7 ?>px;object-fit: fill;"
         src="/video/player.php"
         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
     </div>
