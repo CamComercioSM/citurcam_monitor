@@ -1,7 +1,8 @@
 <?php
-$tiempoConsulta = 2; //En segundos
-$tiempoPresentacion = 5; //En segundos
+$tiempoConsulta = 3; //En segundos
+$tiempoPresentacion = 4; //En segundos
 $Sede = 1;
+$AreaTrabajo = 1;
 $altoPantalla = 1080;
 $anchoPantalla = 1920;
 $altoTurnosAtendiendo = round( $altoPantalla * 0.2 );
@@ -21,13 +22,8 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
       <link type="text/css" rel="stylesheet" href="css/rcarousel.css" />
       <link type="text/css" rel="stylesheet" href="css/main.css">
       <link type="text/css" rel="stylesheet" href="css/flipclock.css">
-  
-  
       <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-      
-      
       <style type="text/css">
-       
         .borde-izq {
           float: left;
           width: <?= $anchoTurnosAtendiendo / 3.3 ?>px;
@@ -42,7 +38,6 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
           width: <?= $anchoTurnosAtendiendo / 3.3 ?>px;
   		    height: <?= $altoTurnosAtendiendo ?>px;
         }
-        
         .turno-atendiendo .nombre-turno {
           background: transparent;
           background-image: url(/img/fondo-nombre-llamando.png);
@@ -62,7 +57,6 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
           word-wrap: break-word;
           overflow: hidden;
         }
-        
         .turno-atendiendo .modulo-turno {
           color: white;
           background: transparent;
@@ -85,16 +79,12 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
           text-overflow: none;
           
         }
-        
         .turno-atendiendo .modulo-turno::first-word {
           content: "-----------";
         }
-        
         .flip-clock-meridium {
           float: right!important;
         }
-        
-        
       </style>
   </head>
   <body>
@@ -152,14 +142,9 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
   <script src="/js/main.js"></script>
   <script type="text/javascript">
   jQuery(function( $ ) {
-    mostrarModulosAtencionActivos(<?= $anchoTurnosAtendiendo ?>, <?= $altoTurnosAtendiendo ?>, 
-      function(){
-        mostrarTurnoLlamando( <?= $tiempoConsulta*1000 ?>);
-        mostrarSiguienteLlamando();
-      }
+    iniciarMonitorDeTurnos(
+      <?= $anchoTurnosAtendiendo ?>, <?= $altoTurnosAtendiendo ?>, <?= $tiempoConsulta*1000 ?>, <?= $tiempoPresentacion*1000 ?>
     );
-    setInterval(mostrarSiguienteLlamando, <?= $tiempoPresentacion*1000 ?> );
-    setInterval( mostrarDatosTurnoLlamando, <?= $tiempoConsulta*1000 ?> );
   });
   </script>
   
