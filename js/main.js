@@ -24,29 +24,29 @@ function iniciarMonitorDeTurnos(anchoModulo, altoModulo, tiempoConsulta, tiempoP
     tiempoMostrarTurnoLlamando = tiempoPresentacion;
     tiempoConsultarTurnoLlamando = tiempoConsulta
     mostrarModulosAtencionActivos(anchoModulo, altoModulo);
-    mostrarDatosTurnoLlamando();
+    mostrarDatosPanelTurnoLlamando();
+    cambiarDatosPanelTurnoLlamando();
+    mostrarDatosTurnoLlamandoEnCarrusel();
 }
 function mostrarModulosAtencionActivos(anchoModulo, altoModulo) {
     var jqxhr = $.ajax({
+        async:false,
         method: "POST",
         url: "api.php",
         dataType: "html",
         data: {operacion: "modulosActivos", sedeID: SEDE, areaID: AREA_TRABAJO}
     }).done(function (data) {
-        // console.log( "Modulos de Atencion" );
-        // console.log( data );
         data = JSON.parse(data);
         if (data.RESPUESTA === 'EXITO') {
             arrancarCarruselTurnos(anchoModulo, altoModulo, data);
-            setInterval(buscarTurnosLLamando, tiempoConsultarTurnoLlamando);
-            // 			buscarTurnosAtendiendo();
+            buscarTurnosLLamando();
+            buscarTurnosAtendiendo();
         }
-    })
-            .fail(function (data) {
-                console.log("Falló la consulta. Contactar con el Centro TICS.");
-                console.log(data);
-                // setTimeout( function(){ location.reload() }, 3000);
-            });
+    }).fail(function (data) {
+        console.log("Falló la consulta. Contactar con el Centro TICS.");
+        console.log(data);
+        // setTimeout( function(){ location.reload() }, 3000);
+    });
 
 }
 
@@ -83,13 +83,12 @@ function arrancarCarruselTurnos(anchoModulo, altoModulo, data) {
 }
 function buscarTurnosLLamando() {
     var jqxhr = $.ajax({
+        async:true,
         method: "POST",
         url: "api.php",
         dataType: "html",
         data: {operacion: "turnosLlamando", sedeID: SEDE, areaID: AREA_TRABAJO}
     }).done(function (data) {
-        console.log("Siguiente");
-        // console.log( data );
         data = JSON.parse(data);
         TurnosLlamando = new Array();
         if (data.RESPUESTA === 'EXITO') {
@@ -105,110 +104,118 @@ function buscarTurnosLLamando() {
                     Turno["moduloID"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionID;
                     Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionTITULO;
                     TurnosLlamando.push(Turno);
-                }
-                mostrarDatosTurnoLlamando();
+                }                
             }
+            mostrarDatosPanelTurnoLlamando();
         }
-        console.log("EN LISTA");
-        console.log(TurnosLlamando);
-        setTimeout(buscarTurnosLLamando, tiempoConsultarTurnoLlamando);
+        buscarTurnosLLamando();
     }).fail(function (data) {
-        console.clear();
+        // console.clear();
         console.log("Falló la consulta. Contactar con el Centro TICS.");
         console.log(data);
         // setTimeout( function(){ location.reload() }, 3000);
     });
 }
-function mostrarDatosTurnoLlamando() {
-
-    console.log("mostra en panel");
+function mostrarDatosPanelTurnoLlamando() {
+    // console.log(TurnosLlamando);
     if (TurnosLlamando.length > 0) {
-        console.log(" SI ");
-        beep();
         if (TurnosLlamando[mostrando].nombre && TurnosLlamando[mostrando].apellido) {
             $("#nombre-turno-llamando").html(TurnosLlamando[mostrando].nombre + " " + TurnosLlamando[mostrando].apellido);
+            $("#codigo-modulo-llamando").html(TurnosLlamando[mostrando].modulo);
+        }else{
+            $("#nombre-turno-llamando").html("");
+            $("#codigo-modulo-llamando").html("");
         }
-        $("#codigo-modulo-llamando").html(TurnosLlamando[mostrando].modulo);
-
-        cargarDatosTurnoLlamandoAlCarrusel(
-                TurnosLlamando[mostrando].moduloID,
-                TurnosLlamando[mostrando].modulo,
-                TurnosLlamando[mostrando].nombre,
-                TurnosLlamando[mostrando].apellido
-                );
-        mostrando++;
-        if (mostrando >= TurnosLlamando.length)
-            mostrando = 0;
     } else {
-        console.log(" NO ");
         mostrando = 0;
         $("#nombre-turno-llamando").html("");
         $("#codigo-modulo-llamando").html("");
     }
-
-    setTimeout(mostrarDatosTurnoLlamando, tiempoMostrarTurnoLlamando);
+    setTimeout(mostrarDatosPanelTurnoLlamando, tiempoConsultarTurnoLlamando);
 }
-function cargarDatosTurnoLlamandoAlCarrusel(moduloID, moduloCODIGO, turnoNOMBRE, turnoAPELLIDO) {
+function cambiarDatosPanelTurnoLlamando(){
+    if (TurnosLlamando.length > 0) { beep(); }
+    mostrando++;  if (mostrando >= TurnosLlamando.length) mostrando = 0;
+    setTimeout(cambiarDatosPanelTurnoLlamando, tiempoMostrarTurnoLlamando);
+}
+function mostrarDatosTurnoLlamandoEnCarrusel() {
+    if (TurnosLlamando.length > 0) {
+        for (var i in TurnosLlamando) {
+            cargarDatosTurnoAlCarrusel(
+                TurnosLlamando[i].moduloID, 
+                TurnosLlamando[i].modulo, 
+                TurnosLlamando[i].nombre, TurnosLlamando[i].apellido
+            );        
+        }
+    } 
+    setTimeout(mostrarDatosTurnoLlamandoEnCarrusel, tiempoConsultarTurnoLlamando);
+}
+function cargarDatosTurnoAlCarrusel(moduloID, moduloCODIGO, turnoNOMBRE, turnoAPELLIDO) {
     var nombreCompleto = turnoNOMBRE + " " + turnoAPELLIDO;
     var data = carrusel.data("data");
     for (var i in data.paths) {
         var elemCarrusel = data.paths[i][0];
         if (elemCarrusel.id == 'modulo-id-' + moduloID + '') {
             $("#carousel #modulo-turno-" + moduloID).html(nombreCompleto);
-            $div = $(elemCarrusel);
-            $div.find('#modulo-turno-' + moduloID).html(nombreCompleto);
         }
     }
 }
 
-// function buscarTurnosAtendiendo(){
-//         var jqxhr = $.ajax({
-//         method: "POST",
-//         url: "api.php",
-//         dataType : "json",
-//         data: { operacion: "turnosLlamando" }
-//       }).done(function(data) {
-//         console.clear();  
-//         console.log( "Siguiente" );
-//         console.log( data );
-//         // data = JSON.parse(data);
-//         TurnosLlamando = new Array();
-//         if(data.RESPUESTA === 'EXITO'){
-//             var TurnosRecibidos = data.DATOS;
-//             if(TurnosRecibidos.length){
-//                 for (var i in TurnosRecibidos) {
-
-//                     var Turno = [];
-//                     Turno["id"] = TurnosRecibidos[i].turnoID;
-//                     Turno["codigo"] = TurnosRecibidos[i].turnoCODIGO;
-//                     Turno["nombre"] = TurnosRecibidos[i].Persona.personaNOMBRES;
-//                     Turno["apellido"] = TurnosRecibidos[i].Persona.personaAPELLIDOS;
-//                     Turno["identificacion"] = TurnosRecibidos[i].Persona.personaIDENTIFICACION;
-//                     Turno["moduloID"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionID;
-//                     Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionTITULO;
-
-//                     TurnosLlamando.push( Turno ); 
-
-
-//                     // console.log(TurnosRecibidos[i].Persona.personaNOMBRES + " " + TurnosRecibidos[i].Persona.personaAPELLIDOS);
-//                     // console.log(TurnosRecibidos[i].Persona.personaIDENTIFICACION);
-//                     // console.log(TurnosRecibidos[i].ModuloAtencion.moduloAtencionCODIGO);
-//                     // console.log(TurnosRecibidos[i].TipoCliente.tipoClienteCODIGO);
-//                     // console.log(TurnosRecibidos[i].TipoCliente.tipoClienteTITULO);
-//                 }
-//             }
-//         }
-
-//         clearTimeout(tiempoTurnoLlamando);
-//         tiempoTurnoLlamando = setTimeout(mostrarTurnoLlamando, tiempo );
-
-//       }).fail(function(data) {
-//         console.clear();  
-//         console.log( "Falló la consulta. Contactar con el Centro TICS." );
-//         console.log( data );
-//         // setTimeout( function(){ location.reload() }, 3000);
-//       });
-// }
+function buscarTurnosAtendiendo(){
+        var jqxhr = $.ajax({
+        async:true,
+        method: "POST",
+        url: "api.php",
+        dataType : "html",
+        data: { operacion: "turnosAtendiendo", sedeID: SEDE, areaID: AREA_TRABAJO }
+      }).done(function(data) {
+            // console.log( data );
+        data = JSON.parse(data); 
+        // console.log( "atendiendo" );
+        TurnosAtendiendo = new Array();
+        if(data.RESPUESTA === 'EXITO'){
+            var TurnosRecibidos = data.DATOS;
+            // console.log( ModulosActivos );
+            // console.log( TurnosRecibidos );
+            var moduloAtencionID,  moduloAtencionTITULO,  personaNOMBRES,  personaAPELLIDOS;
+            for (var j in ModulosActivos) {
+                moduloAtencionID = ModulosActivos[j].id;
+                moduloAtencionTITULO = ModulosActivos[j].nombre;
+                personaNOMBRES = " ESPERANDO "; 
+                personaAPELLIDOS = " TURNO ";
+                if(TurnosRecibidos.length){
+                    for (var i in TurnosRecibidos) {
+                        if(TurnosRecibidos[i].ModuloAtencion.moduloAtencionID == moduloAtencionID ){
+                            // console.log(ModulosActivos[j]);
+                            // console.log(TurnosRecibidos[i]);
+                            personaNOMBRES = TurnosRecibidos[i].Persona.personaNOMBRES; 
+                            personaAPELLIDOS = TurnosRecibidos[i].Persona.personaAPELLIDOS;
+                        }
+                    }
+                }
+                cargarDatosTurnoAlCarrusel(
+                    moduloAtencionID, 
+                    moduloAtencionTITULO, 
+                    personaNOMBRES, 
+                    personaAPELLIDOS
+                );    
+            }
+        }else{
+            for (var j in ModulosActivos) {
+                cargarDatosTurnoAlCarrusel(
+                    ModulosActivos[j].id, 
+                    ModulosActivos[j].nombre, 
+                    " ESPERANDO ", " TURNO "
+                );    
+            }
+        }
+        buscarTurnosAtendiendo();
+      }).fail(function(data) {
+        console.log( "Falló la consulta. Contactar con el Centro TICS." );
+        console.log( data );
+        setTimeout( function(){ location.reload() }, 30000);
+      });
+}
 
 
 

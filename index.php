@@ -1,5 +1,5 @@
 <?php
-$tiempoConsulta = 3; //En segundos
+$tiempoConsulta = 1; //En segundos
 $tiempoPresentacion = 4; //En segundos
 $Sede = 1;
 $AreaTrabajo = 1;

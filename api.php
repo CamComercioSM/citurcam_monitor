@@ -3,15 +3,15 @@ require('libs/ApiSicam.clase.php');
 switch ($_POST['operacion']) {
     
     case 'turnosLlamando':
-        echo $Api->ejecutar( 'atencionpublico', 'TurnosApp', 'mostrarLlamando', array( "1") );
+        echo $Api->ejecutar( 'atencionpublico', 'TurnosApp', 'mostrarLlamando', array( $_POST['sedeID'], $_POST['areaID'] ) );
         break;
     
     case 'turnosAtendiendo':
-        echo $Api->ejecutar( 'atencionpublico', 'TurnosApp', 'mostrarAtendiendo', array( "1") );
+        echo $Api->ejecutar( 'atencionpublico', 'TurnosApp', 'mostrarAtendiendo', array( $_POST['sedeID'], $_POST['areaID']  ) );
         break;
         
     case 'modulosActivos':
-        echo $Api->ejecutar( 'atencionpublico', 'TurnosApp', 'mostrarModulosAtencionActivosPorSede', array( "1") );
+        echo $Api->ejecutar( 'atencionpublico', 'TurnosApp', 'mostrarModulosAtencionActivosPorSede', array( $_POST['sedeID'], $_POST['areaID']  ) );
         break;
         
     default:
