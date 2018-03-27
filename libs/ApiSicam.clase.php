@@ -48,7 +48,6 @@ class ApiSicam {
     public function ejecutar($componente, $controlador, $operacion, array $parametros = null) {
 
         $estadoConexion = false;
-
         $this->conexionApi = curl_init();
         curl_setopt($this->conexionApi, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->conexionApi, CURLOPT_USERPWD, self::USERNAME . ":" . self::PASSWORD);
