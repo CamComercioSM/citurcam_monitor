@@ -50,7 +50,7 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
     vertical-align: middle;
     padding: 20px 10px 10px 10px;
     
-    font-size: 1.3em;
+    font-size: 125%;
     font-weight: bold;
     line-height: 0.75em;
     
@@ -70,7 +70,7 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
     vertical-align: middle;
     padding: 29px 15px;
     
-    font-size: 1.2em;
+    font-size: 150%;
     line-height: 1em;
     text-align: center;
     word-wrap: break-word;
@@ -126,12 +126,12 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
         </div>
     </div>
   </div>
-<!--  <div class="area-publicidad" style="height:<?= $altoPantalla*0.65 ?>px;width:<?= $anchoPantalla*0.60 ?>px;">-->
-<!--    <iframe width="100%" height="<?= $altoPantalla*0.65 ?>px"  frameborder="0" -->
-<!--      allow="autoplay; encrypted-media" allowfullscreen-->
-<!--      style="width:100%;height:<?= $altoPantalla*0.65 ?>px;object-fit: fill;" -->
-<!--      src="/video/player.php" ></iframe>-->
-<!--  </div>-->
+  <div class="area-publicidad" style="height:<?= $altoPantalla*0.65 ?>px;width:<?= $anchoPantalla*0.60 ?>px;">
+    <iframe width="100%" height="<?= $altoPantalla*0.72 ?>px"  frameborder="0" 
+      allow="autoplay; encrypted-media" allowfullscreen
+      style="width:100%;height:<?= $altoPantalla*0.72 ?>px;object-fit: fill;" 
+      src="/video/player.php" ></iframe>
+  </div>
 </div>
 <hr />
 <div class="row" style="margin: 0px;">

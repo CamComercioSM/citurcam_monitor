@@ -34,6 +34,8 @@ var ModulosActivos = new Array();
 var TurnosLlamando = new Array();
 var tiempoConsultarTurnoLlamando;
 
+var contadorRecarga = 0;
+var tiempoRecarga = 19; //Minutos
 // Inicializar el panel de monitores los turnos
 function inciarMonitorTurnosCCSM(){
     $( "#areaTrabajo" ).load( "html/panel-control.html.php", function() {});
@@ -45,8 +47,43 @@ function cargarInterfaceMonitoreo(datosConfiguracion){
         datosConfiguracion
     ).done(function( data ) {
         $( "#areaTrabajo2" ).html( data );
+        setInterval( function(){ contadorRecarga++; if( contadorRecarga == tiempoRecarga ){ window.location.reload(); }  }, 60000 );
     });
 }
+
+function guardarEnNavegador( nombreVariable, valorVariable){
+    if( window.localStorage ){
+        return localStorage.setItem( nombreVariable, valorVariable);
+    }else{
+        alert("no se pudo guardar en el navegador")
+    }
+}
+
+function valorEnNavegador( nombreVariable ){
+    if( window.localStorage ){
+        return localStorage.getItem(nombreVariable);
+    }else{
+        alert("no se pudo guardar en el navegador")
+    }
+}
+
+function borrarValorEnNavegador( nombreVariable ){
+    if( window.localStorage ){
+        return localStorage.removeItem(nombreVariable);
+    }else{
+        alert("no se pudo guardar en el navegador")
+    }
+}
+
+function limpiarDatosEnNavegador(){
+    if( window.localStorage ){
+        return localStorage.clear();
+    }else{
+        alert("no se pudo guardar en el navegador")
+    }
+}
+
+
 function panelVistaSedeZonaAtencion( Sede, Zona ){
   var html = '';
   
@@ -55,17 +92,18 @@ function panelVistaSedeZonaAtencion( Sede, Zona ){
   html += '<div class="caption">';
   html += '<h4>' + Zona.puestoTrabajoTITULO + '</h4>';
   html += '<p>Sede: ' + Sede.sedeTITULO + '<br />Modulos de Atención: ' + Zona.puestoTrabajoNUMMODULOSATENCION + '</p>';
-  html += '<p><input type="checkbox" class=" check_zonasatencion_sedes" name="puestosSeleccionados[]" value="' + Zona.puestoTrabajoID + '">Seleccionar este</p>';
+  html += '<p><input type="checkbox" class=" check_zonasatencion_sedes" id="puestoSeleccionado' + Zona.puestoTrabajoID + '" name="puestosSeleccionados[]" value="' + Zona.puestoTrabajoID + '">Seleccionar este</p>';
   html += '</div>';
   html += '</div>';
   html += '</label></div>';
   
   return html;
 }
-function abrirInterfaceMonitoreo(){
-  cargarInterfaceMonitoreo( $("#frm-configuracion").serialize() );
+function abrirInterfaceMonitoreo( datosSerializado ){
+    cargarInterfaceMonitoreo( datosSerializado );
 }
 function cargarSedes(){
+  bloqueoCargando();    
   var datosConsulta = [];
   ApiSicam.ejecutar(
       'atencionpublico/TurnosApp/datosSedesZonasAtencion', 
@@ -79,6 +117,7 @@ function cargarSedes(){
             $("#div-listado-zonatencion").append( panelVistaSedeZonaAtencion( Sede, Zona ) );
           });
         }
+        desbloqueoCargando();
     });
   }
 }
