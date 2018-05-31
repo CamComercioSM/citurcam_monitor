@@ -265,7 +265,7 @@ function recibirDatosTurnoLlamandoyCargar( Turnos ){
                 Turno["apellido"] = TurnosRecibidos[i].Persona.personaAPELLIDOS;
                 Turno["identificacion"] = TurnosRecibidos[i].Persona.personaIDENTIFICACION;
                 Turno["moduloID"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionID;
-                Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionTITULO;
+                Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionDESCRIPCION;
                 TurnosLlamando.push(Turno);
             } 
             console.log( TurnosLlamando );               
