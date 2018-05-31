@@ -69,6 +69,32 @@
             <label> NO <input type="radio" id="recordarConfiguracionNO" name="recordarConfiguracion" value="NO" /></label>
          </div>
       </div>
+      <div class="row text-center">
+         <div class=" form-group-sm">
+            <label class="control-label requiredField" for="altoPantalla">
+            Nombre de Persona Llamando<span class="asteriskField">*</span>
+            </label>
+            <input class="form-control" id="tamanoLetrasNombreTurno" name="tamanoLetrasNombreTurno" type="number" required />%
+         </div>
+         <div class=" form-group-sm">
+            <label class="control-label requiredField" for="altoPantalla">
+            Nombre del Modulo Llamando<span class="asteriskField">*</span>
+            </label>
+            <input class="form-control" id="tamanoLetrasNombreModulo" name="tamanoLetrasNombreModulo" type="number" required />%
+         </div>
+         <div class=" form-group-sm">
+            <label class="control-label requiredField" for="altoPantalla">
+            Nombre de Persona en Modulo<span class="asteriskField">*</span>
+            </label>
+            <input class="form-control" id="tamanoLetrasTurnoModulo" name="tamanoLetrasTurnoModulo" type="number" required />%
+         </div>
+         <div class=" form-group-sm">
+            <label class="control-label requiredField" for="altoPantalla">
+            Nombre del Modulo en Carrusel<span class="asteriskField">*</span>
+            </label>
+            <input class="form-control" id="tamanoLetrasCodigoModulo" name="tamanoLetrasCodigoModulo" type="number" required />%
+         </div>
+      </div>
       </div>
       </div>
    </div></div>
@@ -81,7 +107,7 @@ $( document ).ready(function() {
    
    valoresFormularioConfig(
       window.screen.availWidth, window.screen.availHeight, 
-      1000, 4000, 4, 4
+      1000, 4000, 4, 4, 100, 125, 125, 150
    );
    
    var configGuardada = valorEnNavegador("recordarConfiguracion");
@@ -92,7 +118,11 @@ $( document ).ready(function() {
          valorEnNavegador("tiempoConsulta"), 
          valorEnNavegador("tiempoTurno"), 
          valorEnNavegador("modulosEnVista"), 
-         valorEnNavegador("pasosEnVista")
+         valorEnNavegador("pasosEnVista"), 
+         valorEnNavegador("tamanoLetrasNombreTurno"), 
+         valorEnNavegador("tamanoLetrasNombreModulo"), 
+         valorEnNavegador("tamanoLetrasTurnoModulo"), 
+         valorEnNavegador("tamanoLetrasCodigoModulo")
       );
       
       var datosSerializado = "anchoPantalla=" + valorEnNavegador("anchoPantalla") 
@@ -101,6 +131,10 @@ $( document ).ready(function() {
             +"&tiempoTurno=" + valorEnNavegador("tiempoTurno") 
             +"&modulosEnVista=" + valorEnNavegador("modulosEnVista") 
             +"&pasosEnVista=" + valorEnNavegador("pasosEnVista") 
+            +"&tamanoLetrasNombreTurno=" + valorEnNavegador("tamanoLetrasNombreTurno") 
+            +"&tamanoLetrasNombreModulo=" + valorEnNavegador("tamanoLetrasNombreModulo") 
+            +"&tamanoLetrasTurnoModulo=" + valorEnNavegador("tamanoLetrasTurnoModulo") 
+            +"&tamanoLetrasCodigoModulo=" + valorEnNavegador("tamanoLetrasCodigoModulo") 
             +"";
       
       var PuestosTrabajo = JSON.parse(valorEnNavegador("puestos") );
@@ -128,7 +162,8 @@ $( document ).ready(function() {
       });
       guardarEnNavegador( "puestos", JSON.stringify( puesto ) );
       console.log( $(this).serialize() );
-      abrirInterfaceMonitoreo($(this).serialize());
+      // abrirInterfaceMonitoreo($(this).serialize());
+      window.location.reload();
     }else{
       alertaInformacion("Debes seleccionar al menos una zona de atencion.")
     }
@@ -136,13 +171,21 @@ $( document ).ready(function() {
   cargarSedes();
 });
 
-function valoresFormularioConfig(anchoPantalla, altoPantalla, tiempoConsulta, tiempoTurno, modulosEnVista, pasosEnVista){
+function valoresFormularioConfig(
+   anchoPantalla, altoPantalla, tiempoConsulta, tiempoTurno, modulosEnVista, pasosEnVista, 
+   tamanoLetrasNombreTurno, tamanoLetrasNombreModulo, tamanoLetrasTurnoModulo, tamanoLetrasCodigoModulo
+){
    $("#anchoPantalla").val( anchoPantalla );
    $("#altoPantalla").val( altoPantalla );
    $("#tiempoConsulta").val( tiempoConsulta );
    $("#tiempoTurno").val( tiempoTurno );
    $("#modulosEnVista").val( modulosEnVista );
    $("#pasosEnVista").val( pasosEnVista );
+   
+   $("#tamanoLetrasNombreTurno").val( tamanoLetrasNombreTurno );
+   $("#tamanoLetrasNombreModulo").val( tamanoLetrasNombreModulo );
+   $("#tamanoLetrasTurnoModulo").val( tamanoLetrasTurnoModulo );
+   $("#tamanoLetrasCodigoModulo").val( tamanoLetrasCodigoModulo );
 }
 
 </script>

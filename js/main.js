@@ -189,7 +189,7 @@ function recibirDatosYArrancarCarrusel (datos){
           animated: true,
           auto: {
               enabled: true,
-               interval: parseInt(TIEMPO_PAUSA_PASOS),
+              interval: parseInt(TIEMPO_PAUSA_PASOS),
               direction: "next"
           }
         });

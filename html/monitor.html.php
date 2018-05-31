@@ -13,12 +13,15 @@ $altoTurnosLlamando = intval( $altoPantalla * 0.2 );
 $anchoTurnosLlamando = intval( ($anchoPantalla * 0.9) / 4 );
 $altoTurnosAtendiendo = intval( $altoPantalla * 0.2 );
 $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
+
+$tamanoLetrasNombreTurno = intval( isset($_POST['tamanoLetrasNombreTurno']) ? $_POST['tamanoLetrasNombreTurno'] : 100 );
+$tamanoLetrasNombreModulo = intval( isset($_POST['tamanoLetrasNombreModulo']) ? $_POST['tamanoLetrasNombreModulo'] : 125 );
+$tamanoLetrasTurnoModulo = intval( isset($_POST['tamanoLetrasTurnoModulo']) ? $_POST['tamanoLetrasTurnoModulo'] : 125 );
+$tamanoLetrasCodigoModulo = intval( isset($_POST['tamanoLetrasCodigoModulo']) ? $_POST['tamanoLetrasCodigoModulo'] : 150 );
+
 ?>
 <style type="text/css">
-  .llamando-turnos {
-    float: left;
-    width: 35%;
-  }
+
   .area-publicidad {
     float: right;
     width: 65%;
@@ -38,6 +41,26 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
     width: <?= $anchoTurnosAtendiendo / 3.3 ?>px;
     height: <?= $altoTurnosAtendiendo ?>px;
   }
+  
+  
+  .llamando-turnos {
+    float: left;
+    width: 35%;
+  }
+  .llamando-turnos #nombre-turno-llamando {
+    min-height: <?= $altoPantalla*0.2 ?>px;
+    max-height: <?= $altoPantalla*0.2 ?>px;
+    padding:3px;
+    font-size: <?= $tamanoLetrasNombreTurno ?>%;
+  }
+  .llamando-turnos #codigo-modulo-llamando {
+    min-height: <?= $altoPantalla*0.1 ?>px;
+    font-size: <?= $tamanoLetrasNombreModulo ?>%;
+  }
+  
+  .turno-atendiendo  {
+    
+  }
   .turno-atendiendo .nombre-turno {
     background: transparent;
     background-image: url(/img/fondo-nombre-llamando.png);
@@ -50,7 +73,7 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
     vertical-align: middle;
     padding: 20px 10px 10px 10px;
     
-    font-size: 125%;
+    font-size: <?= $tamanoLetrasTurnoModulo ?>%;
     font-weight: bold;
     line-height: 0.75em;
     
@@ -70,7 +93,7 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
     vertical-align: middle;
     padding: 29px 15px;
     
-    font-size: 150%;
+    font-size: <?= $tamanoLetrasCodigoModulo ?>%;
     line-height: 1em;
     text-align: center;
     word-wrap: break-word;
@@ -85,12 +108,10 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
   .flip-clock-meridium {
     float: right!important;
   }
+  
 </style>
-
 <div class="row" style="margin-right: 0px;">
-  
-  <div style="float:right;"><a href="javascript:void(0);" target="_self" onclick="cambiarModoCONFIGURACION()">configuración <i class="fa fa-cog"></i> </a></div>
-  
+  <div style="float:right;"><a href="javascript:void(0);" target="_self" onclick="cambiarModoCONFIGURACION()">configuración <i class="fa fa-cog"></i></a></div>
   <div class="llamando-turnos" style="height:<?= $altoPantalla*0.75 ?>px;width:<?= $anchoPantalla*0.39 ?>px;">
     <div style="height:<?= $altoPantalla*0.1 ?>px" >
         <div class="text-center" style="float:left;width:40%;">
@@ -115,14 +136,14 @@ $anchoTurnosAtendiendo = intval( ($anchoPantalla * 0.9) / 4 );
             <img src="/img/titulo-turno.png" style="height:<?= $altoPantalla*0.1 ?>px" />
         </div>
         <div class="animated pulse infinite text-center " style="padding: 5px;overflow: hidden; word-wrap: break-word;">
-            <div id="codigo-turno-llamando" style="font-size: 50%;display: none;" >XXXXXX</div>
-            <div id="nombre-turno-llamando" style="padding:3px;min-height: <?= $altoPantalla*0.2 ?>px;max-height: <?= $altoPantalla*0.2 ?>px"></div>
+            <div id="codigo-turno-llamando" style="display: none;" >XXXXXX</div>
+            <div id="nombre-turno-llamando" style=""></div>
         </div>
         <div>
             <img src="/img/titulo-modulo.png" style="height:<?= $altoPantalla*0.1 ?>px" />
         </div>
-        <div class="animated pulse infinite text-center" style="font-size: 100%">
-            <div id="codigo-modulo-llamando" style="min-height: <?= $altoPantalla*0.1 ?>px"></div>
+        <div class="animated pulse infinite text-center" style="">
+            <div id="codigo-modulo-llamando" style=""></div>
         </div>
     </div>
   </div>
