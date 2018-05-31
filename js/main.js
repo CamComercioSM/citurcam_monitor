@@ -19,8 +19,8 @@ function turnoEncontrado() {
 
 
 
-var TIEMPO_PAUSA_PASOS = 5000;
-var VELOCIDAD_CARRUSEL = 5000;
+var TIEMPO_PAUSA_PASOS = 3500;
+var VELOCIDAD_CARRUSEL = 1500;
 var TIEMPO_CONSULTA = 5000;
 var TIEMPO_PRESENTACION = 5000;
 var CANTIDAD_MODULOS_MOSTRANDO = 4;
@@ -32,6 +32,7 @@ var mostrando = 0;
 var tiempoMostrarTurnoLlamando;
 var ModulosActivos = new Array();
 var TurnosLlamando = new Array();
+var TurnosAtendiendo = new Array();
 var tiempoConsultarTurnoLlamando;
 
 var contadorRecarga = 0;
@@ -127,6 +128,7 @@ function iniciarPresentacionTurnos() {
     mostrarDatosPanelTurnoLlamando();
     cambiarDatosPanelTurnoLlamando();
     mostrarDatosTurnoLlamandoEnCarrusel();
+    mostrarDatosTurnoAtendiendoEnCarrusel();
 }
 
 function mostrarModulosAtencionActivos() {
@@ -150,7 +152,7 @@ function recibirDatosYArrancarCarrusel (datos){
         ModulosActivos.push(Modulo);
         $("#carousel").append(
           '<div id="modulo-id-' + modulo.moduloAtencionID+ '" class="table turno-atendiendo">'
-          + '<div id="modulo-turno-' + modulo.moduloAtencionID + '" class="col-xs-8 nombre-turno " >LIBRE</div>'
+          + '<div id="modulo-turno-' + modulo.moduloAtencionID + '" class="col-xs-8 nombre-turno " ></div>'
           + '<div id="modulo-codigo-' + modulo.moduloAtencionID + '" class="col-xs-4 modulo-turno " style="background-image: url(/img/fondo-turno-llamando.png);" >' + modulo.moduloAtencionTITULO + '</div>'
           + '</div>'
         );
@@ -168,7 +170,7 @@ function recibirDatosYArrancarCarrusel (datos){
         carrusel = $("#carousel").rcarousel({
             width: parseInt(anchoModulo), 
             height: parseInt(altoModulo),
-            step: parseInt(pasos), 
+            step: parseInt(2), 
             visible: parseInt(CANTIDAD_MODULOS_MOSTRANDO),
             speed: parseInt(VELOCIDAD_CARRUSEL),
             animated: true,
@@ -183,7 +185,7 @@ function recibirDatosYArrancarCarrusel (datos){
         carrusel = $("#carousel").rcarousel({
           width: parseInt(anchoModulo), 
           height: parseInt(altoModulo),
-          step: parseInt(pasos), 
+          step: parseInt(2), 
           visible: parseInt(pasos),
           speed: parseInt(VELOCIDAD_CARRUSEL),
           animated: true,
@@ -196,6 +198,7 @@ function recibirDatosYArrancarCarrusel (datos){
       }
       
       buscarTurnosLLamando();
+      buscarTurnosAtendiendo();
     }
     
   }else{
@@ -239,6 +242,18 @@ function mostrarDatosTurnoLlamandoEnCarrusel() {
     } 
     setTimeout(mostrarDatosTurnoLlamandoEnCarrusel, TIEMPO_CONSULTA);
 }
+function mostrarDatosTurnoAtendiendoEnCarrusel() {
+    if (TurnosAtendiendo.length > 0) {
+        for (var i in TurnosAtendiendo) {
+            cargarDatosTurnoAlCarrusel(
+                TurnosAtendiendo[i].moduloID, 
+                TurnosAtendiendo[i].modulo, 
+                TurnosAtendiendo[i].nombre, TurnosAtendiendo[i].apellido
+            );        
+        }
+    } 
+    setTimeout(mostrarDatosTurnoAtendiendoEnCarrusel, TIEMPO_CONSULTA);
+}
 
 //Llamados cuando el monitor ya arrancó
 function buscarTurnosLLamando() {
@@ -274,6 +289,44 @@ function recibirDatosTurnoLlamandoyCargar( Turnos ){
     }
     buscarTurnosLLamando();
 }
+
+
+
+//Llamados cuando el monitor ya arrancó
+function buscarTurnosAtendiendo() {
+    var datosConsulta= ZonasAtencion;
+    ApiSicam.ejecutar(
+      'atencionpublico/TurnosApp/mostrarAtendiendoZonasAtencion', 
+      datosConsulta, 
+      recibirDatosTurnoAtendiendoyCargar
+    );
+}
+
+function recibirDatosTurnoAtendiendoyCargar( Turnos ){
+    
+    TurnosAtendiendo = new Array();
+    if (Turnos && Turnos.length) {
+        var TurnosRecibidos = Turnos;
+        if (TurnosRecibidos.length) {
+            for (var i in TurnosRecibidos) {
+                var Turno = [];
+                Turno["id"] = TurnosRecibidos[i].turnoID;
+                Turno["codigo"] = TurnosRecibidos[i].turnoCODIGO;
+                Turno["nombre"] = TurnosRecibidos[i].Persona.personaNOMBRES;
+                Turno["apellido"] = TurnosRecibidos[i].Persona.personaAPELLIDOS;
+                Turno["identificacion"] = TurnosRecibidos[i].Persona.personaIDENTIFICACION;
+                Turno["moduloID"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionID;
+                Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionDESCRIPCION;
+                TurnosAtendiendo.push(Turno);
+            } 
+            console.log( TurnosAtendiendo );               
+        }
+    }
+    buscarTurnosAtendiendo();
+}
+
+
+
 
 function cargarDatosTurnoAlCarrusel(moduloID, moduloCODIGO, turnoNOMBRE, turnoAPELLIDO) {
     var nombreCompleto = turnoNOMBRE + " " + turnoAPELLIDO;
