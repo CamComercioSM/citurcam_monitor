@@ -13,12 +13,27 @@ function cambiarModoCONFIGURACION(){
 }
 function turnoEncontrado() {
     // if(audioElementBeep.ended){
+    audioElementBeep.volume = 0.35;
     audioElementBeep.play();
     // }
 }
+function calcularTiempoHablar(){
+    if( TurnosLlamando.length > 0){
+        var calculo = ( TIEMPO_PARA_HABLAR_MAX - (TIEMPO_PARA_HABLAR_MIN * Math.log( TurnosLlamando.length ) ) + ( TurnosLlamando.length / (TIEMPO_PARA_HABLAR_MAX)  ) );
+        console.log( "tiempo para hbalar calculado : "  );
+        console.log( 1000 * calculo );
+        if( calculo <= TIEMPO_PARA_HABLAR_MIN ){
+            return 1000*TIEMPO_PARA_HABLAR_MIN;
+        }
+        return 1000 * ( calculo );
+    }
+    return 1000*TIEMPO_PARA_HABLAR_MIN;
+}
 
 
-var TIEMPO_PARA_HABLAR = 10000;
+var TIEMPO_PARA_HABLAR = 11000;
+var TIEMPO_PARA_HABLAR_MAX = 11;
+var TIEMPO_PARA_HABLAR_MIN = 5;
 var TIEMPO_PAUSA_PASOS = 3500;
 var VELOCIDAD_CARRUSEL = 1500;
 var TIEMPO_CONSULTA = 5000;
@@ -252,7 +267,7 @@ function decirDatosTurnoLlamando() {
     } else {
         diciendo = 0;
     }
-    setTimeout(decirDatosTurnoLlamando, TIEMPO_PARA_HABLAR);
+    setTimeout(decirDatosTurnoLlamando, calcularTiempoHablar() );
     console.log("hablar "+ diciendo );
 }
 function cambiarDecirDatosTurnoLlamando(){
