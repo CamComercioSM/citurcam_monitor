@@ -32,8 +32,8 @@
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
   <script type="text/javascript">
     var _apisicam = _apisicam || {};
-    _apisicam.apiURL = 'https://api.ccsm.org.co/';
-    // _apisicam.apiURL = 'https://sicam32-jpllinas.c9users.io/api/';
+    // _apisicam.apiURL = 'https://api.ccsm.org.co/';
+    _apisicam.apiURL = 'https://sicam32-jpllinas.c9users.io/api/';
     _apisicam.clavePublica = 'm8mcJFLAGT5ba%2FP%2BUNITJv3jf9%2FU4zDM2DERnNFpMjGhC1xXlFAPleRAorZVikJA';
     _apisicam.clavePrivada = 'l6LHlDIvNrsuFtLDZx0ti80%2BZltejZmFVokVWczuEuU%3D';
     window.apisicam || (function(d) {
@@ -74,6 +74,7 @@
   </div>
   
   <div id="cargando"></div>
+  <div id="codigoOculto" style="display:none;" ></div>
   <script src="https://unpkg.com/sweetalert2"></script>
   <script type="text/javascript">
     var tituloSistema = " CamApps - Tienda de Aplicaciones de la CCSM" ;                                      

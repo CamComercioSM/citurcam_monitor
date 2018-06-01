@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "monitor-de-citas-y-turnos",
+  "private_key_id": "f7ee722c08349879a8ababf2f424495992eb30ea",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQClR4a5Lw7kfyTR\nQUlMnJzLBeKDO5WlN2BfNFCHt1nBQHiQcwxnZBXkibvP4zLh3yhvNj1Cyczvub0D\nfEG58LS3jpV9BfJgl86EHQUs8Qg8wKquEspBOLZxwMJu/5TtrgFgHsBB1FAFOJAW\nVq7NSSaw9UBinz6eNETIISVDcJttwXhHCgWWzZsJ6ZmZuffTdtcH1jTBQHEtsGsl\nmwo2AqMo/TTaYWvkCZE5iyPSgLLRAfqTK4zaccEJ37aWcjd5RCCF2TZh61qA8YTh\nUs5g9MI0aAsFR00Bb+0wqFRuAbuhsysN3uwcVqx3IbuCBvoPsk4os2YNg4N6Q9hJ\naqizQiJ7AgMBAAECggEASRv+Cp03w7hAE3YDE+n061NzkmRBeh8oOIS+GIJwp+y6\nR/80HenmSzznwHn6EHKzgpol+Aym4+Wvp8KHmlXQwp9GHdMLF1IfTk4981a9M45w\nEWcLY1VQUroW552ThZ1iS1/e4F+nc9/E0LTQRstUW5Nowxc4zidFw5bx0kaV4jKr\n5JQYpTOxk5y/7Z+I94BF4ff/jxkKEiJu0OkpHzTR4bHt9u5rA16p9QfznWzSfDkD\nFVNMVySQMbJ0o7xXjRsM3+ynMhbv4uT+3hvqObYP+qhaJoz+h+h7RceogZou8RbC\nUoLxPBGsYKgy1trY9WatEHOSm/nEMpV7AN33h1RhtQKBgQDNtcdgrNg6XzNf6daY\ncDmxa9VT60nt2LMzufvT1OH0ZaeBI8bO+tClUYWnFn8wi6w7LiVup2aT+lo/Tk60\na1Y9NySx32EJIeZPzDOthoMQJSSLUwoJh7oGjw7SD5Au/tY/VRRwn3qrlT+ZiRVa\n/GX/ZN8lP6pgxvHZ4lN7D2hQ5QKBgQDNr2wF9QiilN7TExEo0Ca1e5hzGEScaO3T\nKnf2tevekF17AxaiCOWVH99eLTMOBaJVleqk2Od/Jjg09N1V6FFre5ZdJQIE836l\nPKiv2Vwchqlpg6EQX19kmHykr/1gJzMGsEw9XzTYlIVEqegbnR1QoazC5zc4uu0q\n4nu8PulP3wKBgHWSTKbrgxYxrTpHexhbJA5MlHvHQdTIAvwwc0cKKC64HvmHSiyo\nW7HxGxN5ny5O1hxo7ooE8XLoJsaB6ifiJUMNjlJ/WoWOs4SuMGcgNy52HCHpTxZN\nVbxD7XOP45eInUlLRkhsTf9daSFGoUcEdQN4UrWGYsm3Syl92rq9/qAlAoGAIeRp\nCWZCAQBE40T+C9qYtkjiavyxuZA0uBoEYHvDnQ3uyWlN3m9W3Ua+OLd79TCKek3U\nt0sigjobAubiXdiFKg/YTArgFU7GLJYdObS4T98EpWVSMe91OY9C4qQ5PRHYf56n\nQWmhvJpkh1bz7zDpdrLdU9Rjrg5nLCzbtL4tFcMCgYBm1So9mkv60MmOfoxUCt1a\ntU9+zrrsnq30ip5HNCioxOshwXr6n7rfxqug/+1/5I2W6v9w+1EuR8T8WZJnjhGv\nvhJ+iJwjclt8CHF5NI5noWAZqTnWHpag1EF2klNZ7iACfxB6ZdGJjUb4ANXohqGW\nQqmyZ+NsSJsPXERV3XgViA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "citurcam@monitor-de-citas-y-turnos.iam.gserviceaccount.com",
+  "client_id": "114806264536033065455",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/citurcam%40monitor-de-citas-y-turnos.iam.gserviceaccount.com"
+}

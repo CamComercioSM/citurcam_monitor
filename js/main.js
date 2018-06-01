@@ -18,7 +18,7 @@ function turnoEncontrado() {
 }
 
 
-
+var TIEMPO_PARA_HABLAR = 6000;
 var TIEMPO_PAUSA_PASOS = 3500;
 var VELOCIDAD_CARRUSEL = 1500;
 var TIEMPO_CONSULTA = 5000;
@@ -29,6 +29,7 @@ var PASOS_MODULOS_MOSTRANDO = 2;
 var ZonasAtencion = 6;
 var carrusel = null;
 var mostrando = 0;
+var diciendo = 0;
 var tiempoMostrarTurnoLlamando;
 var ModulosActivos = new Array();
 var TurnosLlamando = new Array();
@@ -127,6 +128,8 @@ function iniciarPresentacionTurnos() {
     mostrarModulosAtencionActivos();
     mostrarDatosPanelTurnoLlamando();
     cambiarDatosPanelTurnoLlamando();
+    decirDatosTurnoLlamando();
+    cambiarDecirDatosTurnoLlamando();
     mostrarDatosTurnoLlamandoEnCarrusel();
     mostrarDatosTurnoAtendiendoEnCarrusel();
 }
@@ -229,6 +232,34 @@ function cambiarDatosPanelTurnoLlamando(){
     if (TurnosLlamando.length > 0) { turnoEncontrado(); }
     mostrando++;  if (mostrando >= TurnosLlamando.length) mostrando = 0;
     setTimeout(cambiarDatosPanelTurnoLlamando, TIEMPO_PRESENTACION);
+}
+function decirDatosTurnoLlamando() {
+    if (TurnosLlamando.length > 0) {
+        if( TurnosLlamando[diciendo] ){
+            if (TurnosLlamando[diciendo].nombre && TurnosLlamando[diciendo].apellido) {
+                hablar( 
+                    primeraMayuscula(TurnosLlamando[diciendo].nombre) + " " + 
+                    primeraMayuscula(TurnosLlamando[diciendo].apellido) + 
+                    ".. Por favor, ir a " + primeraMayuscula(TurnosLlamando[diciendo].modulo)
+                );
+            }else{
+                // hablar( 
+                //     "Atención: Cédula " + TurnosLlamando[diciendo].cedula + ". Repito: Cédula " + TurnosLlamando[diciendo].cedula + 
+                //     ". Por favor, ir al módulo " + TurnosLlamando[diciendo].modulo 
+                // );
+            }
+        }
+    } else {
+        diciendo = 0;
+    }
+    setTimeout(decirDatosTurnoLlamando, TIEMPO_PARA_HABLAR);
+    console.log("hablar "+ diciendo );
+}
+function cambiarDecirDatosTurnoLlamando(){
+    if (TurnosLlamando.length > 0) { }
+    diciendo++;  if (diciendo >= TurnosLlamando.length) diciendo = 0;
+    setTimeout(cambiarDecirDatosTurnoLlamando, TIEMPO_PRESENTACION*2);
+    console.log("cambiar  "+ diciendo );
 }
 function mostrarDatosTurnoLlamandoEnCarrusel() {
     if (TurnosLlamando.length > 0) {
@@ -338,5 +369,23 @@ function cargarDatosTurnoAlCarrusel(moduloID, moduloCODIGO, turnoNOMBRE, turnoAP
         }
     }
 }
+
+function hablar(textoParaDecir){
+    $.get( 
+        "apis/text-to-speech.php", 
+        { texto: textoParaDecir },
+        function ( respuesta ){
+          $("#codigoOculto").html(respuesta);
+        }
+      );
+}
+
+function primeraMayuscula(texto){
+    texto = texto.toLowerCase();
+    return texto.charAt(0).toUpperCase() + texto.substr(1)
+}
+
+
+
 
 turnoEncontrado();  
