@@ -240,7 +240,7 @@ function decirDatosTurnoLlamando() {
                 hablar( 
                     primeraMayuscula(TurnosLlamando[diciendo].nombre) + " " + 
                     primeraMayuscula(TurnosLlamando[diciendo].apellido) + 
-                    ".. Por favor, ir a " + primeraMayuscula(TurnosLlamando[diciendo].modulo)
+                    ". " + primeraMayuscula(TurnosLlamando[diciendo].modulo) + "."
                 );
             }else{
                 // hablar( 
