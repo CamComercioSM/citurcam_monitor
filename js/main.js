@@ -52,7 +52,7 @@ var TurnosAtendiendo = new Array();
 var tiempoConsultarTurnoLlamando;
 
 var contadorRecarga = 0;
-var tiempoRecarga = 19; //Minutos
+var tiempoRecarga = 15; //Minutos
 // Inicializar el panel de monitores los turnos
 function inciarMonitorTurnosCCSM(){
     $( "#areaTrabajo" ).load( "html/panel-control.html.php", function() {});
