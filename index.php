@@ -30,10 +30,17 @@
   <link type="text/css" rel="stylesheet" href="css/main.css">
   <link type="text/css" rel="stylesheet" href="css/flipclock.css">
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  
+  
+  
+  <!--//Integración con SICAM-->
   <script type="text/javascript">
+    var tituloSistema = " CiTurCam - Citas y Turnos de la Camara de Comercio de Santa Marta para el Magdalena" ;                                      
+    var urlSistema = "";
+    var URL_SICAM = "https://si.sicam32.net/";
     var _apisicam = _apisicam || {};
-    // _apisicam.apiURL = 'https://api.ccsm.org.co/';
-    _apisicam.apiURL = 'https://sicam32-jpllinas.c9users.io/api/';
+    _apisicam.apiURL = 'https://api.sicam32.net/';
+    // _apisicam.apiURL = 'https://sicam32-jpllinas.c9users.io/api/';
     _apisicam.clavePublica = 'm8mcJFLAGT5ba%2FP%2BUNITJv3jf9%2FU4zDM2DERnNFpMjGhC1xXlFAPleRAorZVikJA';
     _apisicam.clavePrivada = 'l6LHlDIvNrsuFtLDZx0ti80%2BZltejZmFVokVWczuEuU%3D';
     window.apisicam || (function(d) {
@@ -43,13 +50,17 @@
         o._ = [];
         s = d.getElementsByTagName('script')[0];
         c = d.createElement('script');
-        c.type = 'text/javascript';
+        c.type = 'text/javascript'; 
         c.charset = 'utf-8';
         c.async = false;
         c.src = _apisicam.apiURL + 'clientes/javascript/index.php?'+_apisicam.clavePublica+':'+_apisicam.clavePrivada;
         s.parentNode.insertBefore(c, s);
     })(document);
-  </script>
+  </script>   
+  <script type="text/javascript" src="https://si.sicam32.net/libs/js/utilidades.js"></script>
+  <script type="text/javascript" src="https://si.sicam32.net/libs/js/pantalla.js"></script>
+  <script type="text/javascript" src="https://si.sicam32.net/libs/js/sonidos.js"></script>
+  <script type="text/javascript" src="https://si.sicam32.net/libs/js/funciones.js"></script>
 </head>
 <body>
   <div id="pnl-control-vistas" class="flip-container" ontouchstart="this.classList.toggle('hover');">
@@ -76,17 +87,6 @@
   <div id="cargando"></div>
   <div id="codigoOculto" style="display:none;" ></div>
   <script src="https://unpkg.com/sweetalert2"></script>
-  <script type="text/javascript">
-    var tituloSistema = " CamApps - Tienda de Aplicaciones de la CCSM" ;                                      
-    var urlSistema = "";
-    var URL_SICAM = "https://sicam.ccsm.org.co/";
-  </script>        
-  <script type="text/javascript" src="https://sicam.ccsm.org.co/libs/js/utilidades.js"></script>
-  <script type="text/javascript" src="https://sicam.ccsm.org.co/libs/js/pantalla.js"></script>
-  <script type="text/javascript" src="https://sicam.ccsm.org.co/libs/js/sonidos.js"></script>
-  <script type="text/javascript" src="https://sicam.ccsm.org.co/libs/js/funciones.js"></script>
-  
-  
   <script type="text/javascript" src="js/plugins.js"></script>
   <script type="text/javascript" src="/js/vendor/jquery.ui.core.js"></script>
   <script type="text/javascript" src="/js/vendor/jquery.ui.widget.js"></script>

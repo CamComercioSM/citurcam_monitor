@@ -106,7 +106,7 @@ $( document ).ready(function() {
    // limpiarDatosEnNavegador();
    
    valoresFormularioConfig(
-      window.screen.availWidth, window.screen.availHeight, 
+      window.screen.width, window.screen.height, 
       1000, 4000, 4, 4, 100, 125, 125, 150
    );
    
