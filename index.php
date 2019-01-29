@@ -86,7 +86,11 @@
   </div>
   
   <div id="cargando"></div>
-  <div id="codigoOculto" style="display:none;" ></div>
+  <div id="codigoOculto" style="display:none;" >
+    <audio controls>
+  <source src="snd/Jetsons-doorbell.mp3" type="audio/mpeg">
+</audio>
+  </div>
   <script src="https://unpkg.com/sweetalert2"></script>
   <script type="text/javascript" src="js/plugins.js"></script>
   <script type="text/javascript" src="/js/vendor/jquery.ui.core.js"></script>
