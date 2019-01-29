@@ -266,8 +266,8 @@ function decirDatosTurnoLlamando() {
             }
         }
     } else {
-        diciendo = 0;
-        hablar(" " );
+        diciendo = 0; 
+        //hablar("");
     }
     setTimeout(decirDatosTurnoLlamando, calcularTiempoHablar() );
     //console.log("hablar "+ diciendo );
