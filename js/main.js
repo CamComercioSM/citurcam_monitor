@@ -388,6 +388,7 @@ function cargarDatosTurnoAlCarrusel(moduloID, moduloCODIGO, turnoNOMBRE, turnoAP
 }
 
 function hablar(textoParaDecir){
+    if(textoParaDecir != ""){
     $.get( 
         "apis/text-to-speech.php", 
         { texto: textoParaDecir },
@@ -395,6 +396,7 @@ function hablar(textoParaDecir){
           $("#codigoOculto").html(respuesta);
         }
       );
+    }
 }
 
 function primeraMayuscula(texto){
