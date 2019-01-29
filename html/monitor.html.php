@@ -148,10 +148,42 @@ $tamanoLetrasCodigoModulo = intval( isset($_POST['tamanoLetrasCodigoModulo']) ? 
     </div>
   </div>
   <div class="area-publicidad" style="height:<?= $altoPantalla*0.65 ?>px;width:<?= $anchoPantalla*0.60 ?>px;">
-    <iframe width="100%" height="<?= $altoPantalla*0.72 ?>px"  frameborder="0" 
+    <div id="area-publicidad" class="owl-carousel dots-on-item owl-theme">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="img/promo/PANTALLA1-min.png" width="<?= $anchoPantalla*0.90 ?>px" height="<?= $altoPantalla*0.90 ?>px">
+          </div>
+          <div class="item">
+            <img src="img/promo/PANTALLA2-min.png" width="<?= $anchoPantalla*0.90 ?>px" height="<?= $altoPantalla*0.90 ?>px">
+          </div>
+          <div class="item">
+            <img src="img/promo/PANTALLA3-min.png" width="<?= $anchoPantalla*0.90 ?>px" height="<?= $altoPantalla*0.90 ?>px">
+          </div>
+          <div class="item">
+            <img src="img/promo/PANTALLA4-min.png" width="<?= $anchoPantalla*0.90 ?>px" height="<?= $altoPantalla*0.90 ?>px">
+          </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <!--<iframe width="100%" height="<?= $altoPantalla*0.72 ?>px"  frameborder="0" 
       allow="autoplay; encrypted-media" allowfullscreen
       style="width:100%;height:<?= $altoPantalla*0.72 ?>px;object-fit: fill;" 
-      src="/video/player.php" ></iframe>
+      src="/video/player.php" ></iframe>-->
   </div>
 </div>
 <hr />

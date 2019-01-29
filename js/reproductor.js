@@ -35,11 +35,11 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
     //this function is called when the input loads a video
     function renderVideo(file) {
-        console.log("objeto archivo");
-        console.log(file);
+        //console.log("objeto archivo");
+        //console.log(file);
         var reader = new FileReader();
-        console.log("objeto lector");
-        console.log(reader);
+        //console.log("objeto lector");
+        //console.log(reader);
         reader.onload = function(event) {
             the_url = event.target.result
             //of course using a template library like handlebars.js is a better solution than just inserting a string
@@ -58,10 +58,10 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
     //watch for change on the 
     $("#the-photo-file-field").change(function() {
-        console.log("photo file has been chosen")
+        //console.log("photo file has been chosen")
         //grab the first image in the fileList
         //in this example we are only loading one file.
-        console.log(this.files[0].size)
+        //console.log(this.files[0].size)
         renderImage(this.files[0])
 
     });
@@ -69,14 +69,14 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     $("#the-video-file-field").change(function() {
         
         var filePath = $(this).val();
-        console.log(filePath);
+        //console.log(filePath);
         
-        console.log("video file has been chosen")
+        //console.log("video file has been chosen")
         //grab the first image in the fileList
         //in this example we are only loading one file.
-        console.log(this)
-        console.log(this.files)
-        console.log(this.files[0].size)
+        //console.log(this)
+        //console.log(this.files)
+        //console.log(this.files[0].size)
         renderVideo(this.files[0])
 
     });

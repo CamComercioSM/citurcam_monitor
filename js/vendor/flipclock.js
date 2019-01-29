@@ -252,7 +252,7 @@ var FlipClock;
 		 
 		log: function(str) {
 			if(window.console && console.log) {
-				console.log(str);
+				//console.log(str);
 			}
 		},
 		 
@@ -1522,7 +1522,7 @@ var FlipClock;
 				date = this.getDateObject();
 			}
 
-			// console.log(date);
+			// //console.log(date);
 
 			
 			var hours = date.getHours();

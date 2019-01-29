@@ -28,7 +28,7 @@ $("#the-video-file-field").change(function() {
     var file;
     for( var i in this.files){
         if( this.files[i].type ){
-            console.log(this.files[i].type);
+            //console.log(this.files[i].type);
             file = this.files[i];
             renderVideo(file);
         }
@@ -58,9 +58,9 @@ function renderVideo(file) {
         $('#data-vid').append("")
         $('#reproductor-video').append("<source src='" + the_url + "' type='video/mp4'>");
         
-        console.log("______________________________________");
-        console.log("archivos cargados");
-        console.log(archivos);
+        //console.log("______________________________________");
+        //console.log("archivos cargados");
+        //console.log(archivos);
     }
     reader.readAsDataURL(file);
     

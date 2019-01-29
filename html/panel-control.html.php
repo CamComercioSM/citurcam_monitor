@@ -138,15 +138,15 @@ $( document ).ready(function() {
             +"";
       
       var PuestosTrabajo = JSON.parse(valorEnNavegador("puestos") );
-      console.log(PuestosTrabajo);
+      //console.log(PuestosTrabajo);
       for (var i in PuestosTrabajo) {
          datosSerializado += "&puestosSeleccionados[]="+PuestosTrabajo[i];
-         console.log(PuestosTrabajo[i]);
-         console.log( '#puestoSeleccionado' + PuestosTrabajo[i] );
-         console.log( $('#puestoSeleccionado' + PuestosTrabajo[i] ).html() );
+         //console.log(PuestosTrabajo[i]);
+         //console.log( '#puestoSeleccionado' + PuestosTrabajo[i] );
+         //console.log( $('#puestoSeleccionado' + PuestosTrabajo[i] ).html() );
          $('#puestoSeleccionado' + PuestosTrabajo[i] ).prop('checked', true);
       }
-      console.log( datosSerializado );
+      //console.log( datosSerializado );
       abrirInterfaceMonitoreo(datosSerializado);
    }else{
       hablar("Bienvenidos al Monitor del Sistema de Citas y Turnos de la Cámara de Comercio de Santa Marta para el Magdalena. ¡Creciendo Contigo!");
@@ -163,7 +163,7 @@ $( document ).ready(function() {
          puesto[i] = val.value;
       });
       guardarEnNavegador( "puestos", JSON.stringify( puesto ) );
-      console.log( $(this).serialize() );
+      //console.log( $(this).serialize() );
       // abrirInterfaceMonitoreo($(this).serialize());
       window.location.reload();
     }else{

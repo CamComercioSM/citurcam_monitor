@@ -1,6 +1,7 @@
 /* global $ */
 /* global ApiSicam */
 var audioElementBeep = document.createElement('audio');
+audioElementBeep.setAttribute('type', "audio/mpeg");
 audioElementBeep.setAttribute('src', '/snd/Jetsons-doorbell.mp3');
 //audioElementBeep.volumen = 0.5;
 function cambiarModoMONITOR(){
@@ -20,8 +21,8 @@ function turnoEncontrado() {
 function calcularTiempoHablar(){
     if( TurnosLlamando.length > 0){
         var calculo = ( TIEMPO_PARA_HABLAR_MAX - (TIEMPO_PARA_HABLAR_MIN * Math.log( TurnosLlamando.length ) ) + ( TurnosLlamando.length / (TIEMPO_PARA_HABLAR_MAX)  ) );
-        console.log( "tiempo para hbalar calculado : "  );
-        console.log( 1000 * calculo );
+        //console.log( "tiempo para hbalar calculado : "  );
+        //console.log( 1000 * calculo );
         if( calculo <= TIEMPO_PARA_HABLAR_MIN ){
             return 1000*TIEMPO_PARA_HABLAR_MIN;
         }
@@ -58,7 +59,7 @@ function inciarMonitorTurnosCCSM(){
     $( "#areaTrabajo" ).load( "html/panel-control.html.php", function() {});
 }
 function cargarInterfaceMonitoreo(datosConfiguracion){
-    //console.log( datosConfiguracion );
+    ////console.log( datosConfiguracion );
     $.post( 
         "html/monitor.html.php", 
         datosConfiguracion
@@ -184,7 +185,7 @@ function recibirDatosYArrancarCarrusel (datos){
     
     if (ModulosActivos.length){
       if( pasos > CANTIDAD_MODULOS_MOSTRANDO ){
-        //console.log('pintando carrusel  ' + CANTIDAD_MODULOS_MOSTRANDO);
+        ////console.log('pintando carrusel  ' + CANTIDAD_MODULOS_MOSTRANDO);
         carrusel = $("#carousel").rcarousel({
             width: parseInt(anchoModulo), 
             height: parseInt(altoModulo),
@@ -199,7 +200,7 @@ function recibirDatosYArrancarCarrusel (datos){
             }
         });
       }else{
-        //console.log('menor a lo programado ' + pasos);
+        ////console.log('menor a lo programado ' + pasos);
         carrusel = $("#carousel").rcarousel({
           width: parseInt(anchoModulo), 
           height: parseInt(altoModulo),
@@ -266,15 +267,16 @@ function decirDatosTurnoLlamando() {
         }
     } else {
         diciendo = 0;
+        hablar(" " );
     }
     setTimeout(decirDatosTurnoLlamando, calcularTiempoHablar() );
-    console.log("hablar "+ diciendo );
+    //console.log("hablar "+ diciendo );
 }
 function cambiarDecirDatosTurnoLlamando(){
     if (TurnosLlamando.length > 0) { }
     diciendo++;  if (diciendo >= TurnosLlamando.length) diciendo = 0;
     setTimeout(cambiarDecirDatosTurnoLlamando, TIEMPO_PRESENTACION*2);
-    console.log("cambiar  "+ diciendo );
+    //console.log("cambiar  "+ diciendo );
 }
 function mostrarDatosTurnoLlamandoEnCarrusel() {
     if (TurnosLlamando.length > 0) {
@@ -313,7 +315,7 @@ function buscarTurnosLLamando() {
 
 function recibirDatosTurnoLlamandoyCargar( Turnos ){
     
-            console.log( Turnos );     
+            //console.log( Turnos );     
     TurnosLlamando = new Array();
     if (Turnos && Turnos.length) {
         var TurnosRecibidos = Turnos;
@@ -329,7 +331,7 @@ function recibirDatosTurnoLlamandoyCargar( Turnos ){
                 Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionDESCRIPCION;
                 TurnosLlamando.push(Turno);
             } 
-            console.log( TurnosLlamando );               
+            //console.log( TurnosLlamando );               
         }
         mostrarDatosPanelTurnoLlamando();
     }
@@ -365,7 +367,7 @@ function recibirDatosTurnoAtendiendoyCargar( Turnos ){
                 Turno["modulo"] = TurnosRecibidos[i].ModuloAtencion.moduloAtencionDESCRIPCION;
                 TurnosAtendiendo.push(Turno);
             } 
-            console.log( TurnosAtendiendo );               
+            //console.log( TurnosAtendiendo );               
         }
     }
     buscarTurnosAtendiendo();
@@ -403,4 +405,4 @@ function primeraMayuscula(texto){
 
 
 
-turnoEncontrado();  
+//turnoEncontrado();  

@@ -30,7 +30,8 @@
   <link type="text/css" rel="stylesheet" href="css/main.css">
   <link type="text/css" rel="stylesheet" href="css/flipclock.css">
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-  
+  <script src="js/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+
   
   
   <!--//Integración con SICAM-->
@@ -98,6 +99,7 @@
       inciarMonitorTurnosCCSM();
       desbloqueoCargando();
   });
+
   </script> 
 </body>
 </html>
