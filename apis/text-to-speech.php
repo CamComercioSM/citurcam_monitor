@@ -32,31 +32,32 @@ echo '<audio id="sonidoEspanola" type="audio/mpeg" src="data:audio/mpeg;base64,'
 // echo '</script>';
 ?>
 <script type="text/javascript" >
-document.getElementById("sonidoEspanola").addEventListener('canplaythrough', reproducirsonido, false);
-function reproducirsonido() {
-  console.log( document.getElementById("sonidoEspanola") );
-  try {
-      document.getElementById("sonidoEspanola").play();
+$( document ).ready(function() {
+  document.getElementById("sonidoEspanola").addEventListener('canplaythrough', reproducirsonido, false);
+  function reproducirsonido() {
+    console.log( document.getElementById("sonidoEspanola") );
+    try {
+        document.getElementById("sonidoEspanola").play();
+    }
+    catch(e) {
+        try {
+        document.getElementById("sonidoEspanola").play();
+    }
+    catch(e) {
+    try {
+        document.getElementById("sonidoEspanola").play();
+    }
+    catch(e) {
+    try {
+        document.getElementById("sonidoEspanola").play();
+    }
+    catch(e) {
+    
+    }
+    }
+    }
+    
+    }
   }
-  catch(e) {
-      try {
-      document.getElementById("sonidoEspanola").play();
-  }
-  catch(e) {
-  try {
-      document.getElementById("sonidoEspanola").play();
-  }
-  catch(e) {
-  try {
-      document.getElementById("sonidoEspanola").play();
-  }
-  catch(e) {
-  
-  }
-  }
-  }
-  
-  }
-}
-
+});
 </script>
