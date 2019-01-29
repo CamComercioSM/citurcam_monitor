@@ -1,12 +1,12 @@
 <audio id="myAudioElement" controls></audio>
 <script type="text/javascript" >
     var audio = document.getElementById('myAudioElement') || new Audio();
-    console.log(audio);
+    //console.log(audio);
     var xhr = new XMLHttpRequest();
     xhr.onload = function(evt) {
         
       var blob = new Blob([xhr.response], {type: 'audio/mp3'});
-      console.log(blob);
+      //console.log(blob);
       var objectUrl = window.URL.createObjectURL(blob);
       audio.src = objectUrl;
       // Release resource when it's loaded
