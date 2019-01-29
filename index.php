@@ -86,8 +86,9 @@
   </div>
   
   <div id="cargando"></div>
-  <div id="codigoOculto" style="display:none;" >
-    <audio controls>
+  <div id="codigoOculto" style="display:none;" ></div>
+  <div id="audioOculto" style="display:none;" >
+    <audio id="timbreLlamado" controls>
   <source src="snd/Jetsons-doorbell.mp3" type="audio/mpeg">
 </audio>
   </div>

@@ -2,7 +2,7 @@
 /* global ApiSicam */
 var audioElementBeep = document.createElement('audio');
 audioElementBeep.setAttribute('type', "audio/mpeg");
-audioElementBeep.setAttribute('src', '/snd/Jetsons-doorbell.mp3');
+audioElementBeep.setAttribute('src', 'https://monitor.citurcam.ccsm.org.co/snd/Jetsons-doorbell.mp3');
 //audioElementBeep.volumen = 0.5;
 function cambiarModoMONITOR(){
   $("#pnl-control-vistas").addClass('hover');
@@ -14,8 +14,9 @@ function cambiarModoCONFIGURACION(){
 }
 function turnoEncontrado() {
     // if(audioElementBeep.ended){
-    audioElementBeep.volume = 0.35;
+    //audioElementBeep.volume = 0.35;
     audioElementBeep.play();
+    
     // }
 }
 function calcularTiempoHablar(){
