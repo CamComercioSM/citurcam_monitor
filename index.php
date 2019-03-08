@@ -29,8 +29,10 @@
   <link type="text/css" rel="stylesheet" href="css/rcarousel.css" />
   <link type="text/css" rel="stylesheet" href="css/main.css">
   <link type="text/css" rel="stylesheet" href="css/flipclock.css">
+	<link type="text/css" rel="stylesheet" href="js/vendor/AudioPlayer/css/audioplayer.css" />
   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
   <script src="js/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="js/vendor/AudioPlayer/js/audioplayer.js"></script>
 
   
   
@@ -86,17 +88,18 @@
   </div>
   
   <div id="cargando"></div>
-  <div id="codigoOculto" style="display:none;" ></div>
+  <div id="codigoOculto" style="position: absolute; display: none;" ></div>
   <div id="audioOculto" style="display:none;" >
-    <audio id="timbreLlamado" controls>
-  <source src="snd/Jetsons-doorbell.mp3" type="audio/mpeg">
-</audio>
+    <!--<audio id="timbreLlamado" >-->
+    <!--  <source src="snd/timbre.mp3" type="audio/mpeg" >-->
+    <!--</audio>-->
   </div>
-  <script src="https://unpkg.com/sweetalert2"></script>
+
+  <script type="text/javascript" src="js/sweetalert2.all.js"></script>
   <script type="text/javascript" src="js/plugins.js"></script>
-  <script type="text/javascript" src="/js/vendor/jquery.ui.core.js"></script>
-  <script type="text/javascript" src="/js/vendor/jquery.ui.widget.js"></script>
-  <script type="text/javascript" src="/js/vendor/jquery.ui.rcarousel.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery.ui.core.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery.ui.widget.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery.ui.rcarousel.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" >
   bloqueoCargando();
@@ -104,7 +107,9 @@
       inciarMonitorTurnosCCSM();
       desbloqueoCargando();
   });
-
+  // $(window).on('load',function() {
+  //   $( '#timbreLlamado' ).audioPlayer();
+  // });
   </script> 
 </body>
 </html>

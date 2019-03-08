@@ -33,12 +33,12 @@ function calcularTiempoHablar(){
 }
 
 
-var TIEMPO_PARA_HABLAR = 11000;
-var TIEMPO_PARA_HABLAR_MAX = 11;
-var TIEMPO_PARA_HABLAR_MIN = 5;
+var TIEMPO_PARA_HABLAR = 7000;
+var TIEMPO_PARA_HABLAR_MAX = 7;
+var TIEMPO_PARA_HABLAR_MIN = 3;
 var TIEMPO_PAUSA_PASOS = 3500;
 var VELOCIDAD_CARRUSEL = 1500;
-var TIEMPO_CONSULTA = 5000;
+var TIEMPO_CONSULTA = 4000;
 var TIEMPO_PRESENTACION = 5000;
 var CANTIDAD_MODULOS_MOSTRANDO = 4;
 var PASOS_MODULOS_MOSTRANDO = 2;
@@ -173,7 +173,7 @@ function recibirDatosYArrancarCarrusel (datos){
         $("#carousel").append(
           '<div id="modulo-id-' + modulo.moduloAtencionID+ '" class="table turno-atendiendo">'
           + '<div id="modulo-turno-' + modulo.moduloAtencionID + '" class="col-xs-8 nombre-turno " ></div>'
-          + '<div id="modulo-codigo-' + modulo.moduloAtencionID + '" class="col-xs-4 modulo-turno " style="background-image: url(/img/fondo-turno-llamando.png);" >' + modulo.moduloAtencionTITULO + '</div>'
+          + '<div id="modulo-codigo-' + modulo.moduloAtencionID + '" class="col-xs-4 modulo-turno " style="background-image: url(img/fondo-turno-llamando.png);" >' + modulo.moduloAtencionTITULO + '</div>'
           + '</div>'
         );
         
@@ -251,6 +251,7 @@ function cambiarDatosPanelTurnoLlamando(){
     setTimeout(cambiarDatosPanelTurnoLlamando, TIEMPO_PRESENTACION);
 }
 function decirDatosTurnoLlamando() {
+    console.log(TurnosLlamando);
     if (TurnosLlamando.length > 0) {
         if( TurnosLlamando[diciendo] ){
             if (TurnosLlamando[diciendo].nombre && TurnosLlamando[diciendo].apellido) {
@@ -258,6 +259,7 @@ function decirDatosTurnoLlamando() {
                     primeraMayuscula(TurnosLlamando[diciendo].nombre) + " " + 
                     primeraMayuscula(TurnosLlamando[diciendo].apellido) + 
                     ". " + primeraMayuscula(TurnosLlamando[diciendo].modulo) + "."
+                    , TurnosLlamando[diciendo].identificacion
                 );
             }else{
                 // hablar( 
@@ -388,7 +390,74 @@ function cargarDatosTurnoAlCarrusel(moduloID, moduloCODIGO, turnoNOMBRE, turnoAP
     }
 }
 
-function hablar(textoParaDecir){
+function hablar(textoParaDecir, idPersona = idAleatorio() ){
+  if(textoParaDecir != ""){    
+    var respuesta = $.ajax({
+        type: "POST",
+        url: "apis/text-to-speech.php",
+        data: { texto: textoParaDecir, persona: idPersona },
+        async: true
+    }).done(function(respuesta) {
+        reproducirRespuestaAPI(respuesta);
+    }).responseText;
+    // var audioElementBeep = document.createElement('audio');
+    // audioElementBeep.setAttribute('type', "audio/mpeg");
+    // audioElementBeep.setAttribute('src', 'data:audio/mpeg;base64,'+audioB64);
+    // audioElementBeep.play();
+    // reproducirRespuestaAPI(respuesta);
+  }
+}
+
+
+function reproducirRespuestaAPI(respuesta){
+    if(respuesta){
+        var datos = JSON.parse(respuesta);
+        // vozAsistente.setAttribute('src', audioB64 );
+        // setTimeout(function() { reproducirVOZ(); }, 123);
+        
+        var repro = $('#sonidoEspanola'+datos.id+'');
+        if (repro.length) {
+            reproducirVOZ(datos.id); 
+        } else {
+            $("#codigoOculto").append(
+              '<video id="sonidoEspanola'+datos.id+'" controls="" autoplay="" name="media"><source src="' + datos.audio + '" type="audio/mpeg"></video>'
+            );
+            // setTimeout(function() {
+                reproducirVOZ(datos.id); 
+            // }, 3000);
+        }
+        
+    }
+}
+
+function idAleatorio() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+var reproduciendo = false;
+function reproducirVOZ(idGenerado){
+    var media = document.getElementById("sonidoEspanola"+idGenerado);
+    const playPromise = media.play();
+    if (playPromise !== null){
+        playPromise.catch(() => { reproducirVOZ(); })
+    }else{
+        if(reproduciendo){
+            reproducirVOZ();
+        }else{
+            reproduciendo = true;
+            media.play();
+            reproduciendo = false;
+        }
+    }
+}
+
+function __hablar(textoParaDecir){
     if(textoParaDecir != ""){
     $.get( 
         "apis/text-to-speech.php", 

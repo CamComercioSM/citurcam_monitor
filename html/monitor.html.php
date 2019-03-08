@@ -63,7 +63,7 @@ $tamanoLetrasCodigoModulo = intval( isset($_POST['tamanoLetrasCodigoModulo']) ? 
   }
   .turno-atendiendo .nombre-turno {
     background: transparent;
-    background-image: url(/img/fondo-nombre-llamando.png);
+    background-image: url(img/fondo-nombre-llamando.png);
     background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -83,7 +83,7 @@ $tamanoLetrasCodigoModulo = intval( isset($_POST['tamanoLetrasCodigoModulo']) ? 
   .turno-atendiendo .modulo-turno {
     color: white;
     background: transparent;
-    background-image: url(/img/atras-modulo.png);
+    background-image: url(img/atras-modulo.png);
     background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -115,10 +115,10 @@ $tamanoLetrasCodigoModulo = intval( isset($_POST['tamanoLetrasCodigoModulo']) ? 
   <div class="llamando-turnos" style="height:<?= $altoPantalla*0.75 ?>px;width:<?= $anchoPantalla*0.39 ?>px;">
     <div style="height:<?= $altoPantalla*0.1 ?>px" >
         <div class="text-center" style="float:left;width:40%;">
-            <img src="/img/logo-retina.png" style="height:<?= $altoPantalla*0.075 ?>px" />
+            <img src="img/logo-retina.png" style="height:<?= $altoPantalla*0.075 ?>px" />
         </div>
         <div id="reloj" class="clock" style="z-index: -1;margin:0em;float: right;width:59%;"></div>
-        <script src="/js/vendor/flipclock.js"></script>
+        <script src="js/vendor/flipclock.js"></script>
         <script type="text/javascript">
         var clock;
         $(document).ready(function () {
@@ -133,14 +133,14 @@ $tamanoLetrasCodigoModulo = intval( isset($_POST['tamanoLetrasCodigoModulo']) ? 
     <hr class="clear clearfix clear-fix" />
     <div style="margin-top: -10px;line-height: 1em;">
         <div>
-            <img src="/img/titulo-turno.png" style="height:<?= $altoPantalla*0.1 ?>px" />
+            <img src="img/titulo-turno.png" style="height:<?= $altoPantalla*0.1 ?>px" />
         </div>
         <div class="animated pulse infinite text-center " style="padding: 5px;overflow: hidden; word-wrap: break-word;">
             <div id="codigo-turno-llamando" style="display: none;" >XXXXXX</div>
             <div id="nombre-turno-llamando" style=""></div>
         </div>
         <div>
-            <img src="/img/titulo-modulo.png" style="height:<?= $altoPantalla*0.1 ?>px" />
+            <img src="img/titulo-modulo.png" style="height:<?= $altoPantalla*0.1 ?>px" />
         </div>
         <div class="animated pulse infinite text-center" style="">
             <div id="codigo-modulo-llamando" style=""></div>
@@ -189,10 +189,10 @@ $tamanoLetrasCodigoModulo = intval( isset($_POST['tamanoLetrasCodigoModulo']) ? 
 <hr />
 <div class="row" style="margin: 0px;">
     <div class="borde-izq">
-        <img src="/img/border-turnos-izq.png" />
+        <img src="img/border-turnos-izq.png" />
     </div>
     <div class="borde-der">
-        <img src="/img/border-turnos-der.png" />
+        <img src="img/border-turnos-der.png" />
     </div>
     <div class="carrusel">
         <div id="container">

@@ -1,4 +1,3 @@
-
 <style type="text/css">
    .control-label {
       width: 100%;
@@ -8,7 +7,6 @@
       width: 50%;
    }
 </style>
-
 <form id="frm-configuracion" class="form-horizontal" method="post" onsubmit="return false;" >
    <h2 class="text-center">Seleccione las Zonas de Atención:</h2>
    <hr><div class="text-center">
@@ -99,7 +97,6 @@
       </div>
    </div></div>
 </form>
-
 <script>
 $( document ).ready(function() {
    

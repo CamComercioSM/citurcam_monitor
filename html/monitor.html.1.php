@@ -148,7 +148,7 @@ $anchoTurnosAtendiendo = ($anchoPantalla * 0.9) / 4 ;
   });
   </script>
   
-  <script src="/js/vendor/flipclock.js"></script>
+  <script src="js/vendor/flipclock.js"></script>
   <script type="text/javascript">
     var clock;
     $(document).ready(function () {
