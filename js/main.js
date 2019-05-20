@@ -33,9 +33,9 @@ function calcularTiempoHablar(){
 }
 
 
-var TIEMPO_PARA_HABLAR = 7000;
-var TIEMPO_PARA_HABLAR_MAX = 7;
-var TIEMPO_PARA_HABLAR_MIN = 3;
+var TIEMPO_PARA_HABLAR = 5000;
+var TIEMPO_PARA_HABLAR_MAX = 6;
+var TIEMPO_PARA_HABLAR_MIN = 4;
 var TIEMPO_PAUSA_PASOS = 3500;
 var VELOCIDAD_CARRUSEL = 1500;
 var TIEMPO_CONSULTA = 4000;
@@ -420,7 +420,7 @@ function reproducirRespuestaAPI(respuesta){
             reproducirVOZ(datos.id); 
         } else {
             $("#codigoOculto").append(
-              '<video id="sonidoEspanola'+datos.id+'" controls="" autoplay="" name="media"><source src="' + datos.audio + '" type="audio/mpeg"></video>'
+              '<video id="sonidoEspanola'+datos.id+'" controls="" autoplay="autoplay" volume="50" name="media"><source src="' + datos.audio + '" type="audio/mpeg"></video>'
             );
             // setTimeout(function() {
                 reproducirVOZ(datos.id); 
