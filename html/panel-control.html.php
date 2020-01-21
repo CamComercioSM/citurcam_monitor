@@ -104,7 +104,7 @@ $( document ).ready(function() {
    
    valoresFormularioConfig(
       window.screen.width, window.screen.height, 
-      1000, 4000, 4, 4, 100, 125, 125, 150
+      1000, 4000, 4, 4, 120, 150, 175, 150
    );
    
    var configGuardada = valorEnNavegador("recordarConfiguracion");
