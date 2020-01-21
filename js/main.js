@@ -407,10 +407,10 @@ function decirDatosTurnoLlamando() {
 
             if (TurnosLlamando[diciendo].tipoClienteID == 2) {
                 $textoHablar += " Afiliado.";
-                TurnoEspecialAfiliados() ;
+                TurnoEspecialAfiliados();
             } else if (TurnosLlamando[diciendo].turnoPrioridadID > 1) {
                 $textoHablar += " Turno Prioritario.";
-                TurnoEspecial() ;
+                TurnoEspecial();
             }
 
 
@@ -573,7 +573,7 @@ function hablar(textoParaDecir, idPersona = idAleatorio()) {
             type: "POST",
             url: "apis/text-to-speech.php",
             data: {texto: textoParaDecir, persona: idPersona},
-            async: true
+            async: false
         }).done(function (respuesta) {
             reproducirRespuestaAPI(respuesta);
         }).responseText;
@@ -623,9 +623,11 @@ function reproducirVOZ(idGenerado) {
     const playPromise = media.play();
     media.volume = 1;
     if (playPromise !== null) {
-        playPromise.catch(() => {
-            reproducirVOZ();
-        })
+//        playPromise.catch((error) => {
+//            if (error) {
+                reproducirVOZ();
+//            }
+//        });
     } else {
         if (reproduciendo) {
             reproducirVOZ();
