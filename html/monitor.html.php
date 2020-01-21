@@ -279,7 +279,7 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
 
 
 <script type="text/javascript">
-    hablar("Bienvenidos al Monitor del Sistema de Citas y Turnos de la Cámara de Comercio de Santa Marta para el Magdalena. ¡Creciendo Contigo!");
+    //hablar("Bienvenidos al Monitor del Sistema de Citas y Turnos de la Cámara de Comercio de Santa Marta para el Magdalena. ¡Creciendo Contigo!");
 
     TIEMPO_PAUSA_PASOS = "<?php echo $pausa ?>";
     VELOCIDAD_CARRUSEL = "<?php echo $velocidad ?>";

@@ -217,11 +217,11 @@ function mostrarTurnosPendientesTiposServicios() {
 }
 
 function recibirDatosYArrancarCarrusel(datos) {
-    console.log(datos);
+    //console.log(datos);
     if (datos) {
 
 
-        console.log('leyendo datos desde el servidor  de turnos pendientes');
+        //console.log('leyendo datos desde el servidor  de turnos pendientes');
 
         $.each(datos, function (i, datos) {
             var TiposServicios = [];
@@ -230,7 +230,7 @@ function recibirDatosYArrancarCarrusel(datos) {
             TiposServicios["nombre"] = datos.turnoTipoServicioTITULO;
             TiposServicios["pendientes"] = datos.Pendientes;
             PendientesTiposServicios.push(TiposServicios);
-            console.log(TiposServicios);
+            //console.log(TiposServicios);
             $("#carousel").append(
                     '<div id="tiposervicio-id-' + datos.turnoTipoServicioID + '" class="table turno-pendiente">'
                     + '<div id="tiposervicio-codigo-' + datos.turnoTipoServicioID + '" class="col-xs-6 modulo-turno ' + datos.turnoTipoServicioCODIGO + '"  >' + datos.turnoTipoServicioTITULO + '</div>'
@@ -312,7 +312,7 @@ function cargarDatosTurnoPendientesEnCarrusel(datos) {
             TiposServicios["nombre"] = datos.turnoTipoServicioTITULO;
             TiposServicios["pendientes"] = datos.Pendientes;
             PendientesTiposServicios.push(TiposServicios);
-            console.log(TiposServicios);
+            //console.log(TiposServicios);
         });
 
     } else {
@@ -344,7 +344,7 @@ function cargarDatosTurnoAlCarrusel(turnoID, turnoCODIGO, turnoNOMBRE, turnoPEND
         var elemCarrusel = data.paths[i][0];
         if (elemCarrusel.id == 'tiposervicio-id-' + turnoID + '') {
             var antes = $("#tiposervicio-id-" + turnoID + " #tiposervicio-turno-" + turnoID + " #tiposervicio-pendiente-" + turnoID + " ").html();
-            console.log(antes);
+            //console.log(antes);
             if (turnoPENDIENTES == antes) {
                 $("#tiposervicio-id-" + turnoID + " #tiposervicio-turno-" + turnoID + "").html("<div id='tiposervicio-pendiente-" + turnoID + "' class=' cambio ' >" + turnoPENDIENTES + "</div>");
             } else {
@@ -573,7 +573,8 @@ function hablar(textoParaDecir, idPersona = idAleatorio()) {
             type: "POST",
             url: "apis/text-to-speech.php",
             data: {texto: textoParaDecir, persona: idPersona},
-            async: false
+            async: true,
+            timeout: 3456
         }).done(function (respuesta) {
             reproducirRespuestaAPI(respuesta);
         }).responseText;

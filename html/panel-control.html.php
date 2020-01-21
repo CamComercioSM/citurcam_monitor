@@ -146,7 +146,7 @@ $( document ).ready(function() {
       //console.log( datosSerializado );
       abrirInterfaceMonitoreo(datosSerializado);
    }else{
-      hablar("Bienvenidos al Monitor del Sistema de Citas y Turnos de la Cámara de Comercio de Santa Marta para el Magdalena. ¡Creciendo Contigo!");
+      //hablar("Bienvenidos al Monitor del Sistema de Citas y Turnos de la Cámara de Comercio de Santa Marta para el Magdalena. ¡Creciendo Contigo!");
    }
       
   $("#frm-configuracion").submit(function(){
