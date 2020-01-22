@@ -75,12 +75,12 @@ function cargarInterfaceMonitoreo(datosConfiguracion) {
             datosConfiguracion
             ).done(function (data) {
         $("#areaTrabajo2").html(data);
-        setInterval(function () {
-            contadorRecarga++;
-            if (contadorRecarga == tiempoRecarga) {
-                window.location.reload();
-            }
-        }, 60000);
+//        setInterval(function () {
+//            contadorRecarga++;
+//            if (contadorRecarga == tiempoRecarga) {
+//                window.location.reload();
+//            }
+//        }, 60000);
     });
 }
 
@@ -574,7 +574,8 @@ function hablar(textoParaDecir, idPersona = idAleatorio()) {
             url: "apis/text-to-speech.php",
             data: {texto: textoParaDecir, persona: idPersona},
             async: true,
-            timeout: 3456
+            cache: false,
+            timeout: 4567
         }).done(function (respuesta) {
             reproducirRespuestaAPI(respuesta);
         }).responseText;
