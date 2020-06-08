@@ -61,7 +61,7 @@ var TurnosAtendiendo = new Array();
 var tiempoConsultarTurnoLlamando;
 
 var contadorRecarga = 0;
-var tiempoRecarga = 55; //Minutos
+var tiempoRecarga = 999; //Minutos
 // Inicializar el panel de monitores los turnos
 function inciarMonitorTurnosCCSM() {
     $("#areaTrabajo").load("html/panel-control.html.php", function () {
@@ -71,9 +71,9 @@ function inciarMonitorTurnosCCSM() {
 function cargarInterfaceMonitoreo(datosConfiguracion) {
     //////console.log( datosConfiguracion );
     $.post(
-            "html/monitor.html.php",
-            datosConfiguracion
-            ).done(function (data) {
+        "html/monitor.html.php",
+        datosConfiguracion
+        ).done(function (data) {
         $("#areaTrabajo2").html(data);
 //        setInterval(function () {
 //            contadorRecarga++;
@@ -139,10 +139,10 @@ function cargarSedes() {
     bloqueoCargando();
     var datosConsulta = [];
     ApiSicam.ejecutar(
-            'atencionpublico/TurnosApp/datosSedesZonasAtencion',
-            datosConsulta,
-            cargarDatosZonasAtencion
-            );
+        'tienda-apps/TurnosApp/datosSedesZonasAtencion',
+        datosConsulta,
+        cargarDatosZonasAtencion
+        );
     function cargarDatosZonasAtencion(datos) {
         $.each(datos, function (i, Sede) {
             if (Sede.ZonasAtencion.length) {
@@ -169,10 +169,10 @@ function iniciarPresentacionTurnos() {
 function mostrarModulosAtencionActivos() {
     var datosConsulta = ZonasAtencion;
     ApiSicam.ejecutar(
-            'atencionpublico/TurnosApp/mostrarModulosZonasAtencion',
-            datosConsulta,
-            recibirDatosYMostrarTabla
-            );
+        'tienda-apps/TurnosApp/mostrarModulosZonasAtencion',
+        datosConsulta,
+        recibirDatosYMostrarTabla
+        );
 
 }
 
@@ -186,14 +186,14 @@ function recibirDatosYMostrarTabla(datos) {
             Modulo["nombre"] = modulo.moduloAtencionTITULO;
             ModulosActivos.push(Modulo);
             $("#tabla_atendiendo").append(
-                    '<li id="modulo-id-' + modulo.moduloAtencionID + '" class="table turno-atendiendo">'
-                    + '<table style="width:100%"><tr><td>'
-                    + '<div id="modulo-codigo-' + modulo.moduloAtencionID + '" class="modulo-turno " style="background-image: url(img/fondo-turno-llamando.png);" >' + modulo.moduloAtencionTITULO + '</div>'
-                    + '</td></tr><tr><td>'
-                    + '<div id="modulo-turno-' + modulo.moduloAtencionID + '" class="nombre-turno " ></div>'
-                    + '</td></tr></table>'
-                    + '</li>'
-                    );
+                '<li id="modulo-id-' + modulo.moduloAtencionID + '" class="table turno-atendiendo">'
+                + '<table style="width:100%"><tr><td>'
+                + '<div id="modulo-codigo-' + modulo.moduloAtencionID + '" class="modulo-turno " style="background-image: url(img/fondo-turno-llamando.png);" >' + modulo.moduloAtencionTITULO + '</div>'
+                + '</td></tr><tr><td>'
+                + '<div id="modulo-turno-' + modulo.moduloAtencionID + '" class="nombre-turno " ></div>'
+                + '</td></tr></table>'
+                + '</li>'
+                );
 
         });
         buscarTurnosLLamando();
@@ -209,10 +209,10 @@ var PendientesTiposServicios = [];
 function mostrarTurnosPendientesTiposServicios() {
     var datosConsulta = ZonasAtencion;
     ApiSicam.ejecutar(
-            'atencionpublico/TurnosApp/mostrarTurnosPendientesTiposServicios',
-            datosConsulta,
-            recibirDatosYArrancarCarrusel
-            );
+        'tienda-apps/TurnosApp/mostrarTurnosPendientesTiposServicios',
+        datosConsulta,
+        recibirDatosYArrancarCarrusel
+        );
 
 }
 
@@ -232,11 +232,11 @@ function recibirDatosYArrancarCarrusel(datos) {
             PendientesTiposServicios.push(TiposServicios);
             //console.log(TiposServicios);
             $("#carousel").append(
-                    '<div id="tiposervicio-id-' + datos.turnoTipoServicioID + '" class="table turno-pendiente">'
-                    + '<div id="tiposervicio-codigo-' + datos.turnoTipoServicioID + '" class="col-xs-6 modulo-turno ' + datos.turnoTipoServicioCODIGO + '"  >' + datos.turnoTipoServicioTITULO + '</div>'
-                    + '<div id="tiposervicio-turno-' + datos.turnoTipoServicioID + '" class="col-xs-6 nombre-turno " >' + datos.Pendientes + '</div>'
-                    + '</div>'
-                    );
+                '<div id="tiposervicio-id-' + datos.turnoTipoServicioID + '" class="table turno-pendiente">'
+                + '<div id="tiposervicio-codigo-' + datos.turnoTipoServicioID + '" class="col-xs-6 modulo-turno ' + datos.turnoTipoServicioCODIGO + '"  >' + datos.turnoTipoServicioTITULO + '</div>'
+                + '<div id="tiposervicio-turno-' + datos.turnoTipoServicioID + '" class="col-xs-6 nombre-turno " >' + datos.Pendientes + '</div>'
+                + '</div>'
+                );
 
         });
         var pasos = PASOS_MODULOS_MOSTRANDO;
@@ -290,10 +290,10 @@ function recibirDatosYArrancarCarrusel(datos) {
 function buscarDatosTurnosPendientesTiposServicios() {
     var datosConsulta = ZonasAtencion;
     ApiSicam.ejecutar(
-            'atencionpublico/TurnosApp/mostrarTurnosPendientesTiposServicios',
-            datosConsulta,
-            cargarDatosTurnoPendientesEnCarrusel
-            );
+        'tienda-apps/TurnosApp/mostrarTurnosPendientesTiposServicios',
+        datosConsulta,
+        cargarDatosTurnoPendientesEnCarrusel
+        );
 
 }
 
@@ -328,11 +328,11 @@ function mostrarDatosTurnoPendientesEnCarrusel() {
         for (var i in PendientesTiposServicios) {
 //            console.log(PendientesTiposServicios[i]);
             cargarDatosTurnoAlCarrusel(
-                    PendientesTiposServicios[i].id,
-                    PendientesTiposServicios[i].codigo,
-                    PendientesTiposServicios[i].nombre,
-                    PendientesTiposServicios[i].pendientes
-                    );
+                PendientesTiposServicios[i].id,
+                PendientesTiposServicios[i].codigo,
+                PendientesTiposServicios[i].nombre,
+                PendientesTiposServicios[i].pendientes
+                );
         }
     }
     setTimeout(mostrarDatosTurnoPendientesEnCarrusel, TIEMPO_CONSULTA);
@@ -394,10 +394,10 @@ function decirDatosTurnoLlamando() {
             $textoHablar = primeraMayuscula(TurnosLlamando[diciendo].codigo) + ". " + primeraMayuscula(TurnosLlamando[diciendo].modulo) + ".";
             if (TurnosLlamando[diciendo].nombre && TurnosLlamando[diciendo].apellido) {
                 $textoHablar =
-                        primeraMayuscula(TurnosLlamando[diciendo].codigo) + ". " +
-                        primeraMayuscula(TurnosLlamando[diciendo].nombre) + " " +
-                        primeraMayuscula(TurnosLlamando[diciendo].apellido) +
-                        ". " + primeraMayuscula(TurnosLlamando[diciendo].modulo) + ".";
+                    primeraMayuscula(TurnosLlamando[diciendo].codigo) + ". " +
+                    primeraMayuscula(TurnosLlamando[diciendo].nombre) + " " +
+                    primeraMayuscula(TurnosLlamando[diciendo].apellido) +
+                    ". " + primeraMayuscula(TurnosLlamando[diciendo].modulo) + ".";
             } else {
                 // hablar( 
                 //     "Atención: Cédula " + TurnosLlamando[diciendo].cedula + ". Repito: Cédula " + TurnosLlamando[diciendo].cedula + 
@@ -466,10 +466,10 @@ function mostrarDatosTurnoAtendiendoEnCarrusel() {
     if (TurnosAtendiendo.length > 0) {
         for (var i in TurnosAtendiendo) {
             cargarDatosTurnoALaTabla(
-                    TurnosAtendiendo[i].moduloID,
-                    TurnosAtendiendo[i].modulo,
-                    TurnosAtendiendo[i].nombre, TurnosAtendiendo[i].apellido, TurnosAtendiendo[i].codigo
-                    );
+                TurnosAtendiendo[i].moduloID,
+                TurnosAtendiendo[i].modulo,
+                TurnosAtendiendo[i].nombre, TurnosAtendiendo[i].apellido, TurnosAtendiendo[i].codigo
+                );
         }
     }
     setTimeout(mostrarDatosTurnoAtendiendoEnCarrusel, TIEMPO_CONSULTA);
@@ -479,10 +479,10 @@ function mostrarDatosTurnoAtendiendoEnCarrusel() {
 function buscarTurnosLLamando() {
     var datosConsulta = ZonasAtencion;
     ApiSicam.ejecutar(
-            'atencionpublico/TurnosApp/mostrarLlamandoZonasAtencion',
-            datosConsulta,
-            recibirDatosTurnoLlamandoyCargar
-            );
+        'tienda-apps/TurnosApp/mostrarLlamandoZonasAtencion',
+        datosConsulta,
+        recibirDatosTurnoLlamandoyCargar
+        );
 }
 
 function recibirDatosTurnoLlamandoyCargar(Turnos) {
@@ -520,10 +520,10 @@ function recibirDatosTurnoLlamandoyCargar(Turnos) {
 function buscarTurnosAtendiendo() {
     var datosConsulta = ZonasAtencion;
     ApiSicam.ejecutar(
-            'atencionpublico/TurnosApp/mostrarAtendiendoZonasAtencion',
-            datosConsulta,
-            recibirDatosTurnoAtendiendoyCargar
-            );
+        'tienda-apps/TurnosApp/mostrarAtendiendoZonasAtencion',
+        datosConsulta,
+        recibirDatosTurnoAtendiendoyCargar
+        );
 }
 
 function recibirDatosTurnoAtendiendoyCargar(Turnos) {
@@ -558,7 +558,7 @@ function cargarDatosTurnoALaTabla(moduloID, moduloCODIGO, turnoNOMBRE, turnoAPEL
     $.each(datos, function (i, modulo) {
 
         if (modulo.id == 'modulo-id-' + moduloID + '') {
-            $("#tabla_atendiendo #modulo-turno-" + moduloID).html('<span style="font-size:150%">' + turnoCODIGO + '</span>');
+            $("#tabla_atendiendo #modulo-turno-" + moduloID).html('<span style="font-size:200%">' + turnoCODIGO + '</span>');
         }
 
     });
@@ -599,8 +599,8 @@ function reproducirRespuestaAPI(respuesta) {
             reproducirVOZ(datos.id);
         } else {
             $("#codigoOculto").append(
-                    '<video id="sonidoEspanola' + datos.id + '" controls="" autoplay="autoplay" volume="1" name="media"><source src="' + datos.audio + '" type="audio/mpeg"></video>'
-                    );
+                '<video id="sonidoEspanola' + datos.id + '" controls="" autoplay="autoplay" volume="1" name="media"><source src="' + datos.audio + '" type="audio/mpeg"></video>'
+                );
             // setTimeout(function() {
             reproducirVOZ(datos.id);
             // }, 3000);
@@ -627,7 +627,7 @@ function reproducirVOZ(idGenerado) {
     if (playPromise !== null) {
 //        playPromise.catch((error) => {
 //            if (error) {
-                reproducirVOZ();
+        reproducirVOZ();
 //            }
 //        });
     } else {
@@ -645,11 +645,11 @@ function reproducirVOZ(idGenerado) {
 function __hablar(textoParaDecir) {
     if (textoParaDecir != "") {
         $.get(
-                "apis/text-to-speech.php",
-                {texto: textoParaDecir},
-                function (respuesta) {
-                    $("#codigoOculto").html(respuesta);
-                }
+            "apis/text-to-speech.php",
+            {texto: textoParaDecir},
+            function (respuesta) {
+                $("#codigoOculto").html(respuesta);
+            }
         );
     }
 }

@@ -45,7 +45,7 @@
     _apisicam.apiURL = 'https://api.sicam32.net/';
     // _apisicam.apiURL = 'https://sicam32-jpllinas.c9users.io/api/';
     _apisicam.clavePublica = 'm8mcJFLAGT5ba%2FP%2BUNITJv3jf9%2FU4zDM2DERnNFpMjGhC1xXlFAPleRAorZVikJA';
-    _apisicam.clavePrivada = 'l6LHlDIvNrsuFtLDZx0ti80%2BZltejZmFVokVWczuEuU%3D';
+    _apisicam.clavePrivada = 'l6LHlDIvNrsuFtLDZx0ti80%2BZltejZmFVokVWczuEuU%3D';    
     window.apisicam || (function(d) {
         var s, c, o = apisicam = function() {
             o._.push(arguments)
@@ -56,7 +56,7 @@
         c.type = 'text/javascript'; 
         c.charset = 'utf-8';
         c.async = false;
-        c.src = _apisicam.apiURL + 'clientes/javascript/index.php?'+_apisicam.clavePublica+':'+_apisicam.clavePrivada;
+        c.src = 'https://cliente.api.sicam32.net/javascript/index.php?'+_apisicam.clavePublica+':'+_apisicam.clavePrivada;
         s.parentNode.insertBefore(c, s);
     })(document);
   </script>   
