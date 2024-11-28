@@ -48,7 +48,13 @@
                 The “audio” tag is not supported by your browser.
             </audio>
         </div>
-        <div id="saludo" style="margin:auto; width: 100vw; height: 100vh; " ></div>
+
+
+                <div id="saludo" style="margin:auto; width: 100vw; height: 100vh; " ></div>
+        
+        
+       
+
         <script type="text/javascript" >
             bloqueoCargando();
             registroAccionesConsola('Iniciando el sistema.....');
@@ -58,14 +64,13 @@
                     inciarMonitorTurnosCCSM();
                     registroAccionesConsola('termino de cargar el monitor de turnos');
 //                    reproducirAudio(audiocaidaInternet, 0.5);
-                    //console.log("dom cargado");
+                    console.log("dom cargado");
             });
             $(window).on('load', function () {
+                     abrirVideoSaludoCorportivo();
                     desbloqueoCargando();
                     registroAccionesConsola('Temino de cargar la pagina');
-                    //console.log("win cargado");
-
-                    abrirVideoSaludoCorportivo();
+                    console.log("win cargado");
             });
             var internetCaido = false;
             setInterval(function () {

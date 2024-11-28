@@ -1,81 +1,63 @@
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Html5 local file api tut</title>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  
-  <link href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/css/foundation.min.css" rel="stylesheet" />
-  
-</head>
-<body>
+<div  id="modal-saludo" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="margin:auto; width: 100vw; height: 100vh; " >
+    <div class="modal-dialog modal-lg" role="document"  style="margin:auto; width: 100vw; height: 100vh; " >
+        <div id="saludo" class="modal-content"  style="margin:auto; width: 100vw; height: 100vh; " >
+      <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+            <div id="player"   style="margin:auto; width: 100vw; height: 100vh; "></div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+            $('#modal-saludo').modal('show');
+    });
+    // 2. This code loads the IFrame Player API code asynchronously.
 
-<div id="reproductor" >
-    <div id="preview" ></div>
-    <div id="data-vid" ></div>
-    <video id="reproductor-video" width="200" height="200"  style="border: thin black solid;" 
-        autoplay autobuffer playsinline controls ></video>
-</div>   
+    var tag = document.createElement('script');
 
-<input type="file" id="the-video-file-field" multiple >
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-<script type="text/javascript" >
-
-var listadoArchivos = [
-    "C:\\Users\\coord.desarrollo\\Videos"
-];
-
-$("#the-video-file-field").change(function() {
-    var file;
-    for( var i in this.files){
-        if( this.files[i].type ){
-            //console.log(this.files[i].type);
-            file = this.files[i];
-            renderVideo(file);
-        }
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var player;
+    function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                    origin: "https://monitor.citurcam.com/",
+                    height: '100vh',
+                    width: '100%',
+                    videoId: '5BtFJXWWplY',
+                    playerVars: {
+                            'origin': "https://monitor.citurcam.com/",
+                            'playsinline': 1,
+                            'controls': 0
+                    },
+                    events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                    }
+            });
     }
-});  
 
-var siguiente = 0;
-var archivos = new Array();
-function controlReproducion(){
-    var videoPlayer = document.getElementById('reproductor-video');
-    videoPlayer.onended = function(){
-        var nextVideo = archivos[siguiente];
-        videoPlayer.src = nextVideo;
-        siguiente++;
-        if(siguiente >= archivos.length){
-            siguiente = 0;
-        }
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+            player.setVolume(10);
+            event.target.playVideo();
     }
-}
 
-
-function renderVideo(file) {
-    var reader = new FileReader();
-    reader.onload = function(event) {
-        the_url = event.target.result
-        archivos.push(event.target.result);
-        $('#data-vid').append("")
-        $('#reproductor-video').append("<source src='" + the_url + "' type='video/mp4'>");
-        
-        //console.log("______________________________________");
-        //console.log("archivos cargados");
-        //console.log(archivos);
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    var done = false;
+    function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                    setTimeout(stopVideo, 12500);
+                    done = true;
+            }
     }
-    reader.readAsDataURL(file);
-    
-}
-    
-$( document ).ready(function() {
-    controlReproducion();    
-}); 
+    function stopVideo() {
+            player.stopVideo();
+            $('#modal-saludo').modal('hide');
+            $('#modal-saludo').html("");
+    }
 </script>
-    
-    
-    
-
-
-    
-  <!--<script type="text/javascript" src="/js/reproductor.js"></script>-->
-</body>
-</html>

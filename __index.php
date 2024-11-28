@@ -23,8 +23,7 @@
         <script type="text/javascript" src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <script type="text/javascript" src="js/vendor/owl.carousel/dist/owl.carousel.min.js"></script>        
         <script type="text/javascript" src="js/plugins.js"></script>                          
-        <script type="text/javascript" src="js/main.js"></script>         
-        <script type="text/javascript" src="js/wsCITURCAM/api.js"></script> 
+        <script type="text/javascript" src="js/main.js"></script> 
     </head>
     <body>
         <div id="pnl-control-vistas" class="flip-container" style="height: 100vh; width: 100%;">
@@ -48,7 +47,6 @@
                 The “audio” tag is not supported by your browser.
             </audio>
         </div>
-        <div id="saludo" style="margin:auto; width: 100vw; height: 100vh; " ></div>
         <script type="text/javascript" >
             bloqueoCargando();
             registroAccionesConsola('Iniciando el sistema.....');
@@ -57,15 +55,13 @@
                     registroAccionesConsola('inicando el monitor de turnos');
                     inciarMonitorTurnosCCSM();
                     registroAccionesConsola('termino de cargar el monitor de turnos');
-//                    reproducirAudio(audiocaidaInternet, 0.5);
-                    //console.log("dom cargado");
+                    reproducirAudio(audiocaidaInternet, 0.5);
+                    console.log("dom cargado");
             });
             $(window).on('load', function () {
                     desbloqueoCargando();
                     registroAccionesConsola('Temino de cargar la pagina');
-                    //console.log("win cargado");
-
-                    abrirVideoSaludoCorportivo();
+                    console.log("win cargado");
             });
             var internetCaido = false;
             setInterval(function () {

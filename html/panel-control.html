@@ -1,0 +1,155 @@
+<style>
+    .borde {
+        border: thin black dashed;
+        height: 20vh;
+    }
+</style>
+<section>
+    <form id="frm-configuracion" class="form-horizontal" method="post" onsubmit="return false;" >
+        <div class="container-fluid" >
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center">Seleccione las Zonas de Atención:</h2>
+                    <hr />
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" >Guardar Configuración y Arrancar Monitoreo</button>
+                        <button id="btn_reiniciarmonitor" type="button" class="btn btn-danger" onclick="recargarMonitorTurnos()();" >Recargar</button>
+                        <button id="btn_reiniciarmonitor" type="button" class="btn btn-danger" onclick="reiniciarMonitorTurnos();" >Reiniciar</button>
+                        <button id="btn_borrarconfig" type="button" class="btn btn-warning" onclick="" >Cargar Configuración Inicial</button>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="div-listado-zonatencion" class="row text-center"></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3 borde text-center">
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="anchoPantalla">
+                                    Ancho de la Pantalla <span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="anchoPantalla" name="anchoPantalla" type="number" required />px
+                            </div>
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Alto de la Pantalla <span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="altoPantalla" name="altoPantalla" type="number" required />px
+                            </div>
+                        </div>
+                        <div class="col-md-3 borde text-center">
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Modulos para mostrar en el carrusel <span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="modulosEnVista" name="modulosEnVista" type="number" required /> ms
+                            </div>
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Modulos que se mueven <span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="pasosEnVista" name="pasosEnVista" type="number" required /> ms
+                            </div>
+                        </div>
+                        <div class="col-md-3 borde text-center">
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Tiempo entre consultas <span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="tiempoConsulta" name="tiempoConsulta" type="number" required /> ms
+                            </div>
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Tiempo Presentación por Turno<span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="tiempoTurno" name="tiempoTurno" type="number" required /> ms
+                            </div>
+                        </div>
+                        <div class="col-md-3 borde text-center">
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Nombre de Persona Llamando<span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="tamanoLetrasNombreTurno" name="tamanoLetrasNombreTurno" type="number" required />%
+                            </div>
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Nombre de Persona en Modulo<span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="tamanoLetrasTurnoModulo" name="tamanoLetrasTurnoModulo" type="number" required />%
+                            </div>
+                        </div>
+                        <div class="col-md-3 borde text-center">
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Nombre del Modulo Llamando<span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="tamanoLetrasNombreModulo" name="tamanoLetrasNombreModulo" type="number" required />%
+                            </div>
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" for="altoPantalla">
+                                    Nombre del Modulo en Carrusel<span class="asteriskField">*</span>
+                                </label>
+                                <input class="form-control" id="tamanoLetrasCodigoModulo" name="tamanoLetrasCodigoModulo" type="number" required />%
+                            </div>
+                        </div>
+                        <div class="col-md-3 borde text-center">
+                            <div class=" form-group-sm">
+                                <label class="control-label requiredField" >
+                                    Recordar Configuración<span class="asteriskField">*</span>
+                                </label>
+                                <label> SI <input type="radio" id="recordarConfiguracionSI" name="recordarConfiguracion" value="SI" checked /></label>
+                                <label> NO <input type="radio" id="recordarConfiguracionNO" name="recordarConfiguracion" value="NO" /></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<script>
+    $(document).ready(function () {
+        validarSiHayConfiguracionGuardada();
+        cargarSedes();
+        cargarDatosPorDefecto();
+        $("#frm-configuracion").submit(function () {
+            if ($('input[type=checkbox]:checked').length) {
+                var config = $(this).serializeArray();
+                guardarConfiguracionMonitorTurnosYarrancar(config);
+            } else {
+                avisoInformacion("Debes seleccionar al menos una zona de atencion.")
+            }
+        });
+    });
+
+    function valoresFormularioConfig(
+            anchoPantalla, altoPantalla, tiempoConsulta, tiempoTurno, modulosEnVista, pasosEnVista,
+            tamanoLetrasNombreTurno, tamanoLetrasNombreModulo, tamanoLetrasTurnoModulo, tamanoLetrasCodigoModulo
+            ) {
+        $("#anchoPantalla").val(anchoPantalla);
+        $("#altoPantalla").val(altoPantalla);
+        $("#tiempoConsulta").val(tiempoConsulta);
+        $("#tiempoTurno").val(tiempoTurno);
+        $("#modulosEnVista").val(modulosEnVista);
+        $("#pasosEnVista").val(pasosEnVista);
+
+        $("#tamanoLetrasNombreTurno").val(tamanoLetrasNombreTurno);
+        $("#tamanoLetrasNombreModulo").val(tamanoLetrasNombreModulo);
+        $("#tamanoLetrasTurnoModulo").val(tamanoLetrasTurnoModulo);
+        $("#tamanoLetrasCodigoModulo").val(tamanoLetrasCodigoModulo);
+    }
+
+
+    function cargarDatosPorDefecto() {
+        valoresFormularioConfig(
+                screen.availWidth, screen.availHeight,
+                10987, 3210, 4, 4, 80, 50, 150, 90
+                );
+    }
+
+</script>

@@ -2,6 +2,10 @@
 require('libs/ApiSicam.clase.php');
 switch ($_POST['operacion']) {
     
+    case 'mostrarTurnosPendientesTiposServicios':
+        
+        break;
+    
     case 'turnosLlamando':
         echo $Api->ejecutar( 'atencionpublico', 'TurnosApp', 'mostrarLlamando', array( $_POST['sedeID'], $_POST['areaID'] ) );
         break;
