@@ -11,14 +11,16 @@ $voces = [
     "es-ES-Neural2-A", "es-ES-Neural2-B", "es-ES-Neural2-C", "es-ES-Neural2-D", "es-ES-Neural2-E", "es-ES-Neural2-F",
     "es-ES-Polyglot-1", "es-ES-Wavenet-B", "es-ES-Wavenet-C", "es-ES-Wavenet-D"
 ];
-$idVoz = (random_int(0, count($voces)));
+echo $idVoz = (random_int(0, count($voces)));
+echo "<hr />";
 if (isset($_POST['texto'])) {
     $textoHablar = $_POST['texto'];
 } elseif (isset($_GET['texto'])) {
-    $textoHablar = $_GET['texto']; 
+    $textoHablar = $_GET['texto'];
 } else {
     $textoHablar = "No hay texto";
 }
+
 $data_string = '{ "audioConfig": { "audioEncoding": "LINEAR16", "effectsProfileId": [ "wearable-class-device" ], "pitch": "-0.40", "speakingRate": "1.08" }, "input": { "text": "' . $textoHablar . '" }, "voice": { "languageCode": "es-ES", "name": "' . $voces[$idVoz] . '" } }';
 $ch = curl_init();
 //curl_setopt($ch, CURLOPT_URL,"https://texttospeech.googleapis.com/v1beta1/text:synthesize?fields=audioContent&key=AIzaSyCRwQEhgwaUw7fSancdh0FShk4RyYbCZcc&alt=json");
@@ -42,12 +44,11 @@ echo json_encode(
       )
   )
 );
-// echo '<audio id="sonidoEspanola" type="audio/mpeg" src="data:audio/mpeg;base64,'.($respuesta->audioContent).'"  autoplay controls ></audio>';
+echo '<audio id="sonidoEspanola" type="audio/mpeg" src="data:audio/mpeg;base64,' . ($respuesta->audioContent) . '"  autoplay controls ></audio>';
 // echo '<script type="text/javascript" >';
 // echo 'sonidoEspanola.load();';
 // echo 'setTimeout( function(){ sonidoEspanola.play(); }, 5000 );';
 // echo '</script>';
 // echo '<script type="text/javascript" >';
-// echo 'document.getElementById("sonidoEspanola").play(); ';
-// echo '</script>';
-?>
+// echo 'document.getElementById("sonidoEspanola").play(); ';  
+// echo '</script>'; 
