@@ -292,11 +292,11 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
             <script type="text/javascript">
         var clock;
         $(document).ready(function () {
-                clock = $('#reloj').FlipClock({
-                        clockFace: 'TwentyFourHourClock',
-                        language: 'es',
-                        showSeconds: false
-                });
+            clock = $('#reloj').FlipClock({
+                clockFace: 'TwentyFourHourClock',
+                language: 'es',
+                showSeconds: false
+            });
         });
             </script>
         </div>
@@ -351,30 +351,30 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
 
     ZonasAtencion = [
 <?php foreach ($AreasTrabajo as $AreaTrabajo): ?>
-                "<?= $AreaTrabajo ?>",
+            "<?= $AreaTrabajo ?>",
 <?php endforeach; ?>
     ];
     anchoModulo = "<?php echo $anchoTurnosAtendiendo ?>";
     altoModulo = "<?php echo $altoTurnosAtendiendo ?>";
     jQuery(function ($) {
-            iniciarPresentacionTurnos("<?= $anchoTurnosAtendiendo ?>", "<?= $altoTurnosAtendiendo ?>", "<?= $tiempoConsulta ?>", "<?= $tiempoPresentacion ?>");
-            cambiarModoMONITOR();
+        iniciarPresentacionTurnos("<?= $anchoTurnosAtendiendo ?>", "<?= $altoTurnosAtendiendo ?>", "<?= $tiempoConsulta ?>", "<?= $tiempoPresentacion ?>");
+        cambiarModoMONITOR();
     });
 
     var topinicial = $("#tabla_atendiendo").position().top;
     var altoespacionombres = $("#tabla_atendiendo").height();
     setInterval(function () {
-            var top = $("#tabla_atendiendo").position().top;
-            var newtop = top - 1;
+        var top = $("#tabla_atendiendo").position().top;
+        var newtop = top - 1;
 
-            if (Math.abs(newtop) <= (altoespacionombres - <?= $altoPantalla * 0.5 ?>)) {
+        if (Math.abs(newtop) <= (altoespacionombres - <?= $altoPantalla * 0.5 ?>)) {
 
-                    $("#tabla_atendiendo").css('top', newtop + 'px');
-            } else {
+            $("#tabla_atendiendo").css('top', newtop + 'px');
+        } else {
 
-                    $("#tabla_atendiendo").css('top', topinicial + 'px');
-            }
-            altoespacionombres = $("#tabla_atendiendo").height();
+            $("#tabla_atendiendo").css('top', topinicial + 'px');
+        }
+        altoespacionombres = $("#tabla_atendiendo").height();
     }, 23);
 
 
@@ -433,19 +433,18 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
 <img id="estrella-afiliados" src="img/mariposa-afiliados.png" class="posicion-estrella" />
 <!--<audio controls autoplay> <source src="snd/timbre_turnos.mp3" type="audio/mpeg"></audio>
 <audio id="musica-ambiental" controls autoplay volume="0.1" ><source src="https://radio.stereoscenic.com/asp-s" type="audio/mpeg"></audio>-->
-<audio id="musica-ambiental" controls autoplay volume="0.1" ><source src="https://libs.tiendasicam32.net/audios/navidad_2021.mp3" type="audio/mpeg"></audio>
+<audio id="musica-ambiental" controls autoplay volume="0.1" ><source src="https://libs.tiendasicam32.net/audios/navidad_2024_lower.mp3" type="audio/mpeg"></audio>
 <script>
 
     var vid = document.getElementById("musica-ambiental");
     vid.volume = 0.1;
     window.addEventListener('load', function () {
-            vid = document.getElementById("musica-ambiental");
-            vid.volume = 0.1;
-			setTimeout( function(){
-				vid.play();
-			}, 1234);
+        vid = document.getElementById("musica-ambiental");
+        vid.volume = 0.1;
+        setTimeout(function () {
+            vid.play();
+        }, 1234);
     });
-	
-	
-</script>
 
+
+</script>
