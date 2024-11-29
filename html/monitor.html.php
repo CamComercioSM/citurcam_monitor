@@ -436,18 +436,16 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
 <audio id="musica-ambiental" controls autoplay volume="0.1" ><source src="https://libs.tiendasicam32.net/audios/navidad_2021.mp3" type="audio/mpeg"></audio>
 <script>
 
-    let vid = document.getElementById("musica-ambiental");
+    var vid = document.getElementById("musica-ambiental");
     vid.volume = 0.1;
     window.addEventListener('load', function () {
-            let vid = document.getElementById("musica-ambiental");
+            vid = document.getElementById("musica-ambiental");
             vid.volume = 0.1;
-			vid.play();
+			setTimeout( function(){
+				vid.play();
+			}, 1234);
     });
 	
-	
-	setTimeout( function(){
-		vid.play();
-	}, 1234);
 	
 </script>
 
