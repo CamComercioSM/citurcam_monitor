@@ -441,6 +441,13 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
     window.addEventListener('load', function () {
             let vid = document.getElementById("musica-ambiental");
             vid.volume = 0.1;
+			vid.play();
     });
+	
+	
+	setTimeout( function(){
+		vid.play();
+	}, 1234);
+	
 </script>
 
