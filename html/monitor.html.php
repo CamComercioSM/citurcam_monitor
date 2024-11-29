@@ -431,8 +431,9 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
 
 <img id="estrella" src="img/mariposa.png" class="posicion-estrella" /> 
 <img id="estrella-afiliados" src="img/mariposa-afiliados.png" class="posicion-estrella" />
-<!--<audio controls autoplay> <source src="snd/timbre_turnos.mp3" type="audio/mpeg"></audio>-->
-<audio id="musica-ambiental" controls autoplay volume="0.1" > <source src="https://radio.stereoscenic.com/asp-s" type="audio/mpeg"></audio>
+<!--<audio controls autoplay> <source src="snd/timbre_turnos.mp3" type="audio/mpeg"></audio>
+<audio id="musica-ambiental" controls autoplay volume="0.1" ><source src="https://radio.stereoscenic.com/asp-s" type="audio/mpeg"></audio>-->
+<audio id="musica-ambiental" controls autoplay volume="0.1" ><source src="https://libs.tiendasicam32.net/audios/navidad_2021.mp3" type="audio/mpeg"></audio>
 <script>
 
     let vid = document.getElementById("musica-ambiental");
