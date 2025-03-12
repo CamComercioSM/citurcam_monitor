@@ -216,12 +216,16 @@ function iniciarPresentacionTurnos() {
         mostrarTurnosPendientesTiposServicios();
 }
 function mostrarModulosAtencionActivos() {
-        var datosConsulta = ZonasAtencion;
-        ApiSicam.ejecutar(
+        //var datosConsulta = ZonasAtencion;
+        conexionAPI('mostrarModulosZonasAtencion', ZonasAtencion)
+                .then(data => {
+                        recibirDatosYMostrarTabla(data.DATOS);
+                });
+        /*ApiSicam.ejecutar(
                 'tienda-apps/TurnosApp/mostrarModulosZonasAtencion',
                 datosConsulta,
                 recibirDatosYMostrarTabla
-                );
+                );*/
 }
 function recibirDatosYMostrarTabla(datos) {
         if (datos) {
