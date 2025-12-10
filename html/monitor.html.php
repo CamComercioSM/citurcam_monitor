@@ -449,35 +449,32 @@ $tamanoLetrasCodigoModulo = intval(isset($_POST['tamanoLetrasCodigoModulo']) ? $
 <img id="estrella-afiliados" src="img/mariposa-afiliados.png" class="posicion-estrella" />
 <!--<audio controls autoplay> <source src="snd/timbre_turnos.mp3" type="audio/mpeg"></audio>
 <audio id="musica-ambiental" controls autoplay volume="0.1" ><source src="https://radio.stereoscenic.com/asp-s" type="audio/mpeg"></audio>-->
-<audio id="musica-ambiental" controls autoplay volume="0.2">
-    <source src="audio/navidad_2025_low.m4a" type="audio/mpeg">
+<audio id="musica-ambiental" controls autoplay loop>
+  <source src="audio/navidad_2025_low.m4a" type="audio/mp4">
 </audio>
+
 <script>
-    (function() {
-        function iniciarMusica() {
-            const vid = document.getElementById("musica-ambiental");
-            if (!vid) return; // si no existe, no hace nada
+(function () {
+  function iniciarMusica() {
+    const audio = document.getElementById("musica-ambiental");
+    if (!audio) return;
 
-            vid.volume = 0.1;
+    audio.volume = 0.2; // volumen real aquí
 
-            // intenta reproducir luego de un pequeño delay
-            setTimeout(() => {
-                const p = vid.play();
-                if (p && typeof p.catch === "function") {
-                    p.catch(() => {
-                        // Autoplay bloqueado: no tiramos error.
-                        // Opcional: podrías mostrar un botón para que el usuario inicie.
-                        console.debug("Autoplay bloqueado, esperando interacción del usuario.");
-                    });
-                }
-            }, 1234);
-        }
+    setTimeout(() => {
+      const p = audio.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          console.debug("Autoplay bloqueado, esperando interacción del usuario.");
+        });
+      }
+    }, 1234);
+  }
 
-        // Si el DOM ya está listo, inicia; si no, espera a que cargue.
-        if (document.readyState === "loading") {
-            window.addEventListener("DOMContentLoaded", iniciarMusica);
-        } else {
-            iniciarMusica();
-        }
-    })();
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", iniciarMusica);
+  } else {
+    iniciarMusica();
+  }
+})();
 </script>
